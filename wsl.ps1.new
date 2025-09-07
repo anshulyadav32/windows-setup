@@ -20,6 +20,7 @@ if (($bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) -or
     # Auto-relaunch the fixed script
     Write-Host "[INFO] Auto-relaunching the fixed script..." -ForegroundColor Cyan
     $fixedFileName = [System.IO.Path]::GetFileName($fixedPath)
+    $fixedFileNameNoExt = [System.IO.Path]::GetFileNameWithoutExtension($fixedPath)
     $currentDir = Split-Path -Parent $scriptPath
     
     # Construct and execute the command to run the fixed script
@@ -65,35 +66,8 @@ function Test-VirtPlatform {
 }
 
 function Test-Virtualization {
-    # Try multiple methods to detect virtualization
-    try {
-        # Method 1: systeminfo
-        $sysInfo = systeminfo
-        $virtFirmware = $sysInfo | Select-String "Virtualization Enabled In Firmware"
-        $virtHyperV = $sysInfo | Select-String "Hyper-V Requirements"
-        
-        if ($virtFirmware -match "Yes") {
-            return $true
-        }
-        
-        # Method 2: Check for Hyper-V capability
-        if ($virtHyperV -match "A hypervisor has been detected") {
-            return $true
-        }
-        
-        # Method 3: PowerShell direct check (Windows 10/11)
-        $processor = Get-CimInstance -ClassName Win32_Processor
-        if ($processor.VirtualizationFirmwareEnabled) {
-            return $true
-        }
-        
-        # If we get here, virtualization is likely not enabled
-        return $false
-    }
-    catch {
-        Write-Host "[WARNING] Couldn't determine virtualization status: $_" -ForegroundColor Yellow
-        return $false
-    }
+    $virt = (systeminfo | Select-String "Virtualization Enabled In Firmware")
+    return ($virt -match "Yes")
 }
 
 function Test-UbuntuInstalled {
@@ -117,21 +91,8 @@ if (-Not (Test-VirtPlatform)) {
 }
 
 if (-Not (Test-Virtualization)) {
-    Write-Host "`n[ERROR] CPU virtualization is disabled in BIOS/UEFI." -ForegroundColor Red
-    Write-Host "`n[ACTION REQUIRED] Follow these steps:" -ForegroundColor Yellow
-    Write-Host "  1. Save any open work and restart your computer" -ForegroundColor Yellow
-    Write-Host "  2. During boot, press the BIOS/UEFI key (usually F2, Del, F10, or Esc)" -ForegroundColor Yellow
-    Write-Host "  3. Navigate to one of these sections:" -ForegroundColor Yellow
-    Write-Host "     - Advanced > CPU Configuration" -ForegroundColor Cyan
-    Write-Host "     - Advanced > Processor" -ForegroundColor Cyan 
-    Write-Host "     - Security" -ForegroundColor Cyan
-    Write-Host "  4. Look for and ENABLE one of these settings:" -ForegroundColor Yellow
-    Write-Host "     - Virtualization Technology (VT-x)" -ForegroundColor Cyan
-    Write-Host "     - AMD-V / SVM Mode" -ForegroundColor Cyan
-    Write-Host "     - Intel Virtualization Technology" -ForegroundColor Cyan
-    Write-Host "  5. Save changes and exit BIOS/UEFI" -ForegroundColor Yellow
-    Write-Host "  6. After restart, run this script again" -ForegroundColor Yellow
-    Write-Host "`nWSL2 cannot be installed without CPU virtualization enabled." -ForegroundColor Red
+    Write-Host "[ERROR] CPU virtualization is disabled in BIOS/UEFI." -ForegroundColor Red
+    Write-Host "[ACTION] Please reboot into BIOS/UEFI and enable Intel VT-x or AMD-V (SVM)." -ForegroundColor Yellow
     exit 1
 }
 
@@ -139,26 +100,11 @@ Write-Host "Setting WSL 2 as the default version..." -ForegroundColor Yellow
 wsl --set-default-version 2
 
 if (-Not (Test-UbuntuInstalled)) {
-    Write-Host "`n[INFO] Installing Ubuntu under WSL2..." -ForegroundColor Yellow
-    try {
-        # Try to install Ubuntu
-        $result = wsl --install -d Ubuntu 2>&1
-        
-        # Check if installation started successfully
-        if ($result -match "Installing, this may take a few minutes") {
-            Write-Host "`n[SUCCESS] Ubuntu installation has started." -ForegroundColor Green
-            Write-Host "[IMPORTANT] Complete username/password setup in the opened window." -ForegroundColor Cyan
-            Write-Host "[NEXT STEP] After finishing setup, re-run this script to continue." -ForegroundColor Cyan
-        } else {
-            Write-Host "`n[INFO] Ubuntu is being installed. Please follow the prompts in the new window." -ForegroundColor Yellow
-            Write-Host "[NEXT STEP] After completing the Ubuntu setup, re-run this script." -ForegroundColor Cyan
-        }
-        exit 0
-    } catch {
-        Write-Host "`n[ERROR] Failed to install Ubuntu: $_" -ForegroundColor Red
-        Write-Host "[TIP] Try installing Ubuntu manually using 'wsl --install -d Ubuntu'" -ForegroundColor Yellow
-        exit 1
-    }
+    Write-Host "Installing Ubuntu under WSL2..." -ForegroundColor Yellow
+    wsl --install -d Ubuntu
+    Write-Host "Ubuntu is installing. Complete username/password setup in the opened window." -ForegroundColor Cyan
+    Write-Host "After finishing setup, re-run this script." -ForegroundColor Cyan
+    exit 0
 }
 
 $ubuntuInfo = wsl --list --verbose | Select-String "Ubuntu"
