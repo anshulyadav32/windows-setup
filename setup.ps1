@@ -62,9 +62,9 @@ if (-NOT $isAdmin) {
 # Function to show menu and get selection
 function Show-Menu {
     Write-Host "`n📦 Installation Options:" -ForegroundColor Yellow
-    Write-Host "1) 💻 Windows Developer Tools (VS Code, Git, Node.js, etc.)" -ForegroundColor Green
+    Write-Host "1) 💻 Windows Developer Tools (VS Code, Git, Node.js, Python, Docker, etc.)" -ForegroundColor Green
     Write-Host "2) 🐧 WSL2 with Ubuntu + Developer Tools" -ForegroundColor Green
-    Write-Host "3) 🔧 Additional Dev Tools (ChatGit, NOI CLI, etc.)" -ForegroundColor Green
+    Write-Host "3) 🔧 Additional Dev Tools (ChatGPT, ChatGit, NOI CLI, WinGit, Scoop, etc.)" -ForegroundColor Green
     Write-Host "4) ⭐ Install Everything (Complete Setup)" -ForegroundColor Cyan
     Write-Host "5) ❌ Exit" -ForegroundColor Red
     
@@ -72,16 +72,73 @@ function Show-Menu {
     return $selection
 }
 
+# Function to test if a command exists
+function Test-CommandExists {
+    param (
+        [string]$Command
+    )
+    
+    $exists = $false
+    try {
+        if (Get-Command $Command -ErrorAction Stop) {
+            $exists = $true
+        }
+    } catch {
+        $exists = $false
+    }
+    
+    return $exists
+}
+
+# Function to show checkpoint message
+function Show-Checkpoint {
+    param (
+        [string]$Message,
+        [bool]$Success = $true
+    )
+    
+    if ($Success) {
+        Write-Host "[✓] CHECKPOINT: $Message" -ForegroundColor Green
+    } else {
+        Write-Host "[✗] CHECKPOINT: $Message" -ForegroundColor Red
+    }
+}
+
 # Function to run the Windows setup script
 function Install-WindowsTools {
     Write-Host "`n=== Starting Windows Developer Tools Installation ===" -ForegroundColor Cyan
     
-    try {
-        # Run the Windows setup script using direct invocation
-        & "$PSScriptRoot\installps.ps1"
-    }
-    catch {
-        Write-Host "Error running Windows installation script: $_" -ForegroundColor Red
+    # Check if script file exists
+    $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath "installps.ps1"
+    
+    if (Test-Path $scriptPath) {
+        Show-Checkpoint "Found Windows tools installation script at: $scriptPath"
+        
+        try {
+            # Run the Windows setup script using direct invocation
+            & "$scriptPath"
+            
+            # Test if key tools were installed
+            $testsResults = @(
+                @{Name="Git"; Success=(Test-CommandExists -Command "git")}
+                @{Name="Node.js"; Success=(Test-CommandExists -Command "node")}
+                @{Name="Python"; Success=(Test-CommandExists -Command "python")}
+                @{Name="VS Code"; Success=(Test-CommandExists -Command "code")}
+                @{Name="Chocolatey"; Success=(Test-CommandExists -Command "choco")}
+            )
+            
+            # Display results
+            foreach ($test in $testsResults) {
+                Show-Checkpoint "$($test.Name) installation" -Success $test.Success
+            }
+        }
+        catch {
+            Write-Host "Error running Windows installation script: $_" -ForegroundColor Red
+            Show-Checkpoint "Windows tools installation failed" -Success $false
+        }
+    } else {
+        Write-Host "Windows tools installation script not found at: $scriptPath" -ForegroundColor Red
+        Show-Checkpoint "Windows tools script not found" -Success $false
     }
     
     Write-Host "=== Windows Developer Tools Installation Complete ===" -ForegroundColor Cyan
@@ -91,12 +148,47 @@ function Install-WindowsTools {
 function Install-WSLUbuntu {
     Write-Host "`n=== Starting WSL2 with Ubuntu Installation ===" -ForegroundColor Cyan
     
-    try {
-        # Run the WSL setup script using direct invocation
-        & "$PSScriptRoot\wsl.ps1"
-    }
-    catch {
-        Write-Host "Error running WSL installation script: $_" -ForegroundColor Red
+    # Check if script file exists
+    $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath "wsl.ps1"
+    
+    if (Test-Path $scriptPath) {
+        Show-Checkpoint "Found WSL installation script at: $scriptPath"
+        
+        try {
+            # Run the WSL setup script using direct invocation
+            & "$scriptPath"
+            
+            # Test if WSL is installed
+            $wslInstalled = $false
+            try {
+                $wslOutput = wsl --status 2>&1
+                $wslInstalled = ($wslOutput -notmatch "not found")
+            } catch {
+                $wslInstalled = $false
+            }
+            
+            Show-Checkpoint "WSL installation" -Success $wslInstalled
+            
+            # Check if Ubuntu is installed in WSL
+            $ubuntuInstalled = $false
+            if ($wslInstalled) {
+                try {
+                    $distros = (wsl -l) -join " "
+                    $ubuntuInstalled = $distros -match "Ubuntu"
+                } catch {
+                    $ubuntuInstalled = $false
+                }
+            }
+            
+            Show-Checkpoint "Ubuntu installation in WSL" -Success $ubuntuInstalled
+        }
+        catch {
+            Write-Host "Error running WSL installation script: $_" -ForegroundColor Red
+            Show-Checkpoint "WSL installation failed" -Success $false
+        }
+    } else {
+        Write-Host "WSL installation script not found at: $scriptPath" -ForegroundColor Red
+        Show-Checkpoint "WSL script not found" -Success $false
     }
     
     Write-Host "=== WSL2 with Ubuntu Installation Complete ===" -ForegroundColor Cyan
@@ -106,12 +198,37 @@ function Install-WSLUbuntu {
 function Install-AdditionalTools {
     Write-Host "`n=== Installing Additional Developer Tools ===" -ForegroundColor Cyan
     
-    try {
-        # Run the dev tools script using direct invocation
-        & "$PSScriptRoot\modules\devtools\install.ps1"
-    }
-    catch {
-        Write-Host "Error running additional tools installation script: $_" -ForegroundColor Red
+    # Check if script file exists
+    $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath "modules\devtools\install.ps1"
+    
+    if (Test-Path $scriptPath) {
+        Show-Checkpoint "Found additional tools installation script at: $scriptPath"
+        
+        try {
+            # Run the dev tools script using direct invocation
+            & "$scriptPath"
+            
+            # Test if key additional tools were installed
+            $testsResults = @(
+                @{Name="ChatGPT CLI"; Success=(Test-CommandExists -Command "chatgpt")}
+                @{Name="NOI CLI"; Success=(Test-CommandExists -Command "noi")}
+                @{Name="ChatGit"; Success=(Test-CommandExists -Command "chatgit")}
+                @{Name="Scoop"; Success=(Test-CommandExists -Command "scoop")}
+                @{Name="WinGet"; Success=(Test-CommandExists -Command "winget")}
+            )
+            
+            # Display results
+            foreach ($test in $testsResults) {
+                Show-Checkpoint "$($test.Name) installation" -Success $test.Success
+            }
+        }
+        catch {
+            Write-Host "Error running additional tools installation script: $_" -ForegroundColor Red
+            Show-Checkpoint "Additional tools installation failed" -Success $false
+        }
+    } else {
+        Write-Host "Additional tools installation script not found at: $scriptPath" -ForegroundColor Red
+        Show-Checkpoint "Additional tools script not found" -Success $false
     }
     
     Write-Host "=== Additional Developer Tools Installation Complete ===" -ForegroundColor Cyan
@@ -157,6 +274,86 @@ else {
         }
     }
 }
+
+# Function to test all installations and show summary
+function Test-AllInstallations {
+    Write-Host "`n=== 🔍 Testing All Installations ===" -ForegroundColor Cyan
+    
+    $allTools = @(
+        # Dev essentials
+        @{Category="Essential"; Name="Git"; Command="git"}
+        @{Category="Essential"; Name="Node.js"; Command="node"}
+        @{Category="Essential"; Name="npm"; Command="npm"}
+        @{Category="Essential"; Name="Python"; Command="python"}
+        @{Category="Essential"; Name="VS Code"; Command="code"}
+        
+        # Package managers
+        @{Category="Package Managers"; Name="Chocolatey"; Command="choco"}
+        @{Category="Package Managers"; Name="Scoop"; Command="scoop"}
+        @{Category="Package Managers"; Name="WinGet"; Command="winget"}
+        
+        # AI Tools
+        @{Category="AI Tools"; Name="ChatGPT CLI"; Command="chatgpt"}
+        @{Category="AI Tools"; Name="NOI CLI"; Command="noi"}
+        @{Category="AI Tools"; Name="ChatGit"; Command="chatgit"}
+        @{Category="AI Tools"; Name="Gemini CLI"; Command="gemini"}
+        
+        # Containers
+        @{Category="Containers"; Name="Docker"; Command="docker"}
+        
+        # WSL
+        @{Category="WSL"; Name="WSL"; Command="wsl"}
+    )
+    
+    $results = @{
+        "Essential" = @{Total=0; Installed=0}
+        "Package Managers" = @{Total=0; Installed=0}
+        "AI Tools" = @{Total=0; Installed=0}
+        "Containers" = @{Total=0; Installed=0}
+        "WSL" = @{Total=0; Installed=0}
+    }
+    
+    foreach ($tool in $allTools) {
+        $category = $tool.Category
+        $results[$category].Total++
+        
+        $installed = Test-CommandExists -Command $tool.Command
+        if ($installed) {
+            $results[$category].Installed++
+        }
+        
+        $status = if ($installed) { "✓" } else { "✗" }
+        Write-Host "[$status] $($tool.Name)" -ForegroundColor $(if ($installed) { "Green" } else { "Red" })
+    }
+    
+    # Display summary
+    Write-Host "`n=== 📊 Installation Summary ===" -ForegroundColor Yellow
+    foreach ($category in $results.Keys) {
+        $installed = $results[$category].Installed
+        $total = $results[$category].Total
+        $percentage = [math]::Round(($installed / $total) * 100)
+        
+        Write-Host "$category : $installed/$total installed ($percentage%)" -ForegroundColor $(
+            if ($percentage -eq 100) { "Green" } 
+            elseif ($percentage -ge 50) { "Yellow" } 
+            else { "Red" }
+        )
+    }
+    
+    # Overall status
+    $totalInstalled = ($allTools | Where-Object { (Test-CommandExists -Command $_.Command) }).Count
+    $totalTools = $allTools.Count
+    $overallPercentage = [math]::Round(($totalInstalled / $totalTools) * 100)
+    
+    Write-Host "`n=== 🏁 Overall Installation Status: $totalInstalled/$totalTools ($overallPercentage%) ===" -ForegroundColor $(
+        if ($overallPercentage -eq 100) { "Green" } 
+        elseif ($overallPercentage -ge 70) { "Yellow" } 
+        else { "Red" }
+    )
+}
+
+# Run final test
+Test-AllInstallations
 
 # Final instructions
 Write-Host "`n📋 Setup complete! Here's what to do next:" -ForegroundColor Yellow

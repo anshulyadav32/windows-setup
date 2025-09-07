@@ -15,6 +15,21 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Exit 1
 }
 
+# Install Scoop
+if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing Scoop..." -ForegroundColor Yellow
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+    
+    # Install Git for Scoop
+    Write-Host "Installing Git for Scoop..." -ForegroundColor Yellow
+    scoop install git
+} else {
+    Write-Host "Scoop already installed." -ForegroundColor Green
+}
+Write-Host "[Checkpoint] Scoop installation step complete." -ForegroundColor Magenta
+
 # Install Chocolatey
 if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
     Write-Host "Installing Chocolatey..." -ForegroundColor Yellow
@@ -39,7 +54,8 @@ $packages = @(
     "nodejs-lts",         # Node.js (LTS version)
     "python",             # Python
     "postgresql",         # PostgreSQL (includes psql)
-    "microsoft-windows-terminal" # Windows Terminal
+    "microsoft-windows-terminal", # Windows Terminal
+    "docker-desktop"      # Docker Desktop
 )
 
 foreach ($pkg in $packages) {
@@ -60,6 +76,7 @@ foreach ($pkg in $packages) {
         "python" { $success = (Get-Command python -ErrorAction SilentlyContinue) -ne $null }
         "postgresql" { $success = (Get-Command psql -ErrorAction SilentlyContinue) -ne $null }
         "microsoft-windows-terminal" { $success = (Get-Command wt -ErrorAction SilentlyContinue) -ne $null }
+        "docker-desktop" { $success = (Get-Command docker -ErrorAction SilentlyContinue) -ne $null }
         default { $success = (Get-Command $pkg -ErrorAction SilentlyContinue) -ne $null }
     }
     
@@ -70,6 +87,32 @@ foreach ($pkg in $packages) {
     }
 }
 Write-Host "[Checkpoint] All main packages installation step complete." -ForegroundColor Magenta
+
+# Ensure npm is properly set up
+if (-Not (Get-Command npm -ErrorAction SilentlyContinue)) {
+    Write-Host "npm not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
+} else {
+    # Install global npm packages
+    $npmPackages = @(
+        "typescript",
+        "nodemon",
+        "serve",
+        "npm-check-updates",
+        "yarn"
+    )
+    
+    foreach ($pkg in $npmPackages) {
+        Write-Host "Installing npm package $pkg..." -ForegroundColor Yellow
+        npm install -g $pkg
+        
+        if (Get-Command $pkg -ErrorAction SilentlyContinue) {
+            Write-Host "[Checkpoint] npm package $pkg installed successfully." -ForegroundColor Magenta
+        } else {
+            Write-Host "[Checkpoint] npm package $pkg installation may need verification." -ForegroundColor Yellow
+        }
+    }
+    Write-Host "[Checkpoint] All npm packages installation step complete." -ForegroundColor Magenta
+}
 
 # Install Gemini CLI (Google AI)
 if (-Not (Get-Command gemini -ErrorAction SilentlyContinue)) {
