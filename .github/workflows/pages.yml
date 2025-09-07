@@ -1,4 +1,4 @@
-name: Build and Deploy GitHub Pages
+name: Deploy static website
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -16,7 +16,6 @@ jobs:
       - name: Upload website folder
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./website
+          path: website
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
