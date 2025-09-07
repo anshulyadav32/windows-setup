@@ -1,0 +1,108 @@
+/* Mobile-specific CSS */
+@media (max-width: 768px) {
+  /* General adjustments */
+  body {
+    font-size: 16px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* Header adjustments */
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  header .tagline {
+    font-size: 1rem;
+  }
+  
+  /* Navigation adjustments */
+  nav .menu-toggle {
+    display: block;
+  }
+  
+  nav ul.main-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+  }
+  
+  nav ul.main-nav.active {
+    display: flex;
+  }
+  
+  nav ul.main-nav li {
+    width: 100%;
+  }
+  
+  nav ul.main-nav a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  /* Code blocks and pre tags */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0.75rem !important;
+  }
+  
+  /* Grid layouts */
+  .grid-col-3,
+  .grid-col-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid {
+    gap: 1rem;
+  }
+  
+  /* Copy buttons */
+  .copy-button {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  
+  /* Features section */
+  ul.feature-list li {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Quick start section adjustments */
+  #quickstart ol {
+    padding-left: 1.5rem;
+  }
+  
+  #quickstart li {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  header {
+    padding: 1.5rem 0;
+  }
+  
+  header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .btn {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
