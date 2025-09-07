@@ -99,6 +99,24 @@ if (-NOT $isAdmin) {
 
 # Function to test if a command exists
 function Test-CommandExists {
+function Ensure-ToolPath {
+    param (
+        [string]$Command,
+        [string]$ConfigScript = $null
+    )
+    $exists = Test-CommandExists -Command $Command
+    if (-not $exists) {
+        Write-Host "[INFO] $Command not found in PATH. Attempting to configure..." -ForegroundColor Yellow
+        if ($ConfigScript -and (Test-Path $ConfigScript)) {
+            Write-Host "Running configuration script: $ConfigScript" -ForegroundColor Cyan
+            & $ConfigScript
+        } else {
+            Write-Host "No configuration script provided for $Command. Please configure manually if needed." -ForegroundColor Red
+        }
+    } else {
+        Write-Host "[OK] $Command found in PATH." -ForegroundColor Green
+    }
+}
     param (
         [string]$Command
     )
@@ -132,30 +150,18 @@ function Show-Checkpoint {
 # Function to run the Windows setup script
 function Install-WindowsTools {
     Write-Host "`n=== Starting Windows Developer Tools Installation ===" -ForegroundColor Cyan
-    
     # Check if script file exists
     $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath "install.ps1"
-    
     if (Test-Path $scriptPath) {
         Show-Checkpoint "Found Windows tools installation script at: $scriptPath"
-        
         try {
-            # Run the Windows setup script using direct invocation
             & "$scriptPath"
-            
-            # Test if key tools were installed
-            $testsResults = @(
-                @{Name="Git"; Success=(Test-CommandExists -Command "git")}
-                @{Name="Node.js"; Success=(Test-CommandExists -Command "node")}
-                @{Name="Python"; Success=(Test-CommandExists -Command "python")}
-                @{Name="VS Code"; Success=(Test-CommandExists -Command "code")}
-                @{Name="Chocolatey"; Success=(Test-CommandExists -Command "choco")}
-            )
-            
-            # Display results
-            foreach ($test in $testsResults) {
-                Show-Checkpoint "$($test.Name) installation" -Success $test.Success
-            }
+            # Check and configure paths for each tool
+            Ensure-ToolPath -Command "git"
+            Ensure-ToolPath -Command "node"
+            Ensure-ToolPath -Command "python"
+            Ensure-ToolPath -Command "code"
+            Ensure-ToolPath -Command "choco"
         }
         catch {
             Write-Host "Error running Windows installation script: $_" -ForegroundColor Red
@@ -165,7 +171,6 @@ function Install-WindowsTools {
         Write-Host "Windows tools installation script not found at: $scriptPath" -ForegroundColor Red
         Show-Checkpoint "Windows tools script not found" -Success $false
     }
-    
     Write-Host "=== Windows Developer Tools Installation Complete ===" -ForegroundColor Cyan
 }
 
