@@ -2,4 +2,7 @@ User-agent: *
 Allow: /
 
 # Specify the preferred domain
-Host: https://ls.r-u.live
+Host: https://win.r-u.live
+
+# Sitemap location
+Sitemap: https://win.r-u.live/sitemap.xml

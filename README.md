@@ -2,6 +2,8 @@
 
 [![Deploy static website](https://github.com/anshulyadav32/windows-setup/actions/workflows/pages.yml/badge.svg)](https://github.com/anshulyadav32/windows-setup/actions/workflows/pages.yml)
 
+**🌐 Website: [https://win.r-u.live](https://win.r-u.live)** 
+
 This repository provides PowerShell scripts to quickly set up a modern Windows or WSL development environment.
 
 ## Features
