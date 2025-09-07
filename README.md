@@ -1,5 +1,7 @@
 # Windows Development Environment Setup
 
+[![Deploy static website](https://github.com/anshulyadav32/windows-setup/actions/workflows/pages.yml/badge.svg)](https://github.com/anshulyadav32/windows-setup/actions/workflows/pages.yml)
+
 This repository provides PowerShell scripts to quickly set up a modern Windows or WSL development environment.
 
 ## Features
@@ -11,22 +13,22 @@ This repository provides PowerShell scripts to quickly set up a modern Windows o
 ### Option 1: One-liner (Recommended)
 Open PowerShell as Administrator and run:
 ```powershell
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex
 ```
 
 Or full command:
 ```powershell
-Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | Invoke-Expression
 ```
 
 For WSL2 Ubuntu setup:
 ```powershell
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex
 ```
 
 For devtools install (ChatGit, NOI, etc):
 ```powershell
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/modules/devtools/install.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex
 ```
 
 ### Option 2: Download and run locally
