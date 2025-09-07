@@ -8,10 +8,11 @@ title: win.r-u.live
 
 # Welcome to win.r-u.live
 
-This site provides a Windows PowerShell installer for a modern dev environment.
+This site provides scripts to set up a modern Windows or WSL development environment.
 
 <a class="button" href="https://github.com/anshulyadav32/win.r-u.live">View on GitHub</a>
 <a class="button" href="https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1">Download setup.ps1</a>
+<a class="button" href="https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1">Download wsl.ps1</a>
 
 ## Quick Start
 
@@ -26,14 +27,24 @@ This site provides a Windows PowerShell installer for a modern dev environment.
    Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression
    ```
 
-## Features
-- Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, Gemini CLI, Codex CLI
+For WSL2 Ubuntu setup:
+```powershell
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1 | iex
+```
 
----
+## Features
+- Windows: Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, Gemini CLI, Codex CLI
+- WSL2 Ubuntu: Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React
+
 
 For Linux SSL install:
 ```sh
 curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash
+```
+
+For devtools install (ChatGit, NOI, etc):
+```powershell
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/modules/devtools/install.ps1 | iex
 ```
 
 </div>

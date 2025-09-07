@@ -74,22 +74,30 @@ Write-Host "[Checkpoint] All main packages installation step complete." -Foregro
 # Install Gemini CLI (Google AI)
 if (-Not (Get-Command gemini -ErrorAction SilentlyContinue)) {
     Write-Host "Installing Gemini CLI..." -ForegroundColor Yellow
-    npm install -g @google/generative-ai-cli
-    if (Get-Command gemini -ErrorAction SilentlyContinue) {
-        Write-Host "[Checkpoint] Gemini CLI installed successfully." -ForegroundColor Magenta
+    if ((Get-Command npm -ErrorAction SilentlyContinue) -and (Get-Command node -ErrorAction SilentlyContinue)) {
+        npm install -g @google/generative-ai-cli
+        if (Get-Command gemini -ErrorAction SilentlyContinue) {
+            Write-Host "[Checkpoint] Gemini CLI installed successfully." -ForegroundColor Magenta
+        } else {
+            Write-Host "[Checkpoint] Gemini CLI installation failed or not found." -ForegroundColor Red
+        }
     } else {
-        Write-Host "[Checkpoint] Gemini CLI installation failed or not found." -ForegroundColor Red
+        Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
     }
 }
 
 # Install Codex CLI (OpenAI or custom CLI)
 if (-Not (Get-Command codex -ErrorAction SilentlyContinue)) {
     Write-Host "Installing Codex CLI..." -ForegroundColor Yellow
-    npm install -g codex-cli
-    if (Get-Command codex -ErrorAction SilentlyContinue) {
-        Write-Host "[Checkpoint] Codex CLI installed successfully." -ForegroundColor Magenta
+    if ((Get-Command npm -ErrorAction SilentlyContinue) -and (Get-Command node -ErrorAction SilentlyContinue)) {
+        npm install -g codex-cli
+        if (Get-Command codex -ErrorAction SilentlyContinue) {
+            Write-Host "[Checkpoint] Codex CLI installed successfully." -ForegroundColor Magenta
+        } else {
+            Write-Host "[Checkpoint] Codex CLI installation failed or not found." -ForegroundColor Red
+        }
     } else {
-        Write-Host "[Checkpoint] Codex CLI installation failed or not found." -ForegroundColor Red
+        Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
     }
 }
 
@@ -100,22 +108,30 @@ Write-Host "Restart PowerShell or run 'refreshenv' for changes to take effect." 
 # Install ChatGit CLI (if available)
 if (-Not (Get-Command chatgit -ErrorAction SilentlyContinue)) {
     Write-Host "Installing ChatGit CLI..." -ForegroundColor Yellow
-    npm install -g chatgit
-    if (Get-Command chatgit -ErrorAction SilentlyContinue) {
-        Write-Host "[Checkpoint] ChatGit CLI installed successfully." -ForegroundColor Magenta
+    if ((Get-Command npm -ErrorAction SilentlyContinue) -and (Get-Command node -ErrorAction SilentlyContinue)) {
+        npm install -g chatgit
+        if (Get-Command chatgit -ErrorAction SilentlyContinue) {
+            Write-Host "[Checkpoint] ChatGit CLI installed successfully." -ForegroundColor Magenta
+        } else {
+            Write-Host "[Checkpoint] ChatGit CLI installation failed or not found." -ForegroundColor Red
+        }
     } else {
-        Write-Host "[Checkpoint] ChatGit CLI installation failed or not found." -ForegroundColor Red
+        Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
     }
 }
 
 # Install NOI CLI (if available)
 if (-Not (Get-Command noi -ErrorAction SilentlyContinue)) {
     Write-Host "Installing NOI CLI..." -ForegroundColor Yellow
-    npm install -g noi
-    if (Get-Command noi -ErrorAction SilentlyContinue) {
-        Write-Host "[Checkpoint] NOI CLI installed successfully." -ForegroundColor Magenta
+    if ((Get-Command npm -ErrorAction SilentlyContinue) -and (Get-Command node -ErrorAction SilentlyContinue)) {
+        npm install -g noi
+        if (Get-Command noi -ErrorAction SilentlyContinue) {
+            Write-Host "[Checkpoint] NOI CLI installed successfully." -ForegroundColor Magenta
+        } else {
+            Write-Host "[Checkpoint] NOI CLI installation failed or not found." -ForegroundColor Red
+        }
     } else {
-        Write-Host "[Checkpoint] NOI CLI installation failed or not found." -ForegroundColor Red
+        Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
     }
 }
 
