@@ -43,7 +43,11 @@ For WSL2 Ubuntu setup only:
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex
 ```
 
-**Note:** WSL installation may require a system restart. The script will guide you through the process with clear instructions and can be run multiple times to complete the installation.
+**Note:** WSL installation REQUIRES a system restart after the initial installation. The script will:
+1. Install the WSL optional component
+2. Set WSL 2 as the default version
+3. Prompt you to restart your computer
+4. After restart, run the script again to complete Ubuntu installation
 
 For devtools only (ChatGPT, NOI, ChatGit, etc):
 ```powershell

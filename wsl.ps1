@@ -20,8 +20,27 @@ if (-Not (Test-WSLEnabled)) {
     
     # Enable WSL feature
     try {
-        wsl --install --no-distribution
-        Write-Host "WSL has been installed. Please restart your computer and run this script again." -ForegroundColor Green
+        # Run the install command
+        Write-Host "Installing the Windows Subsystem for Linux (WSL)..." -ForegroundColor Yellow
+        $result = wsl --install --no-distribution 2>&1
+        
+        # Always set WSL 2 as default
+        Write-Host "Setting WSL 2 as the default version..." -ForegroundColor Yellow
+        wsl --set-default-version 2
+        
+        # Check if a restart is needed
+        Write-Host "`n⚠️ IMPORTANT: Your computer needs to be restarted to complete the WSL installation." -ForegroundColor Cyan
+        Write-Host "After restarting, run this script again to continue with the installation." -ForegroundColor Cyan
+        
+        # Ask if user wants to restart now
+        $restart = Read-Host "`nDo you want to restart your computer now? (y/n)"
+        if ($restart -eq 'y' -or $restart -eq 'Y') {
+            Write-Host "`nRestarting your computer in 10 seconds. Please run this script again after restart." -ForegroundColor Yellow
+            Start-Sleep -Seconds 10
+            Restart-Computer -Force
+        } else {
+            Write-Host "`nPlease restart your computer manually and run this script again." -ForegroundColor Yellow
+        }
         exit 0
     }
     catch {
