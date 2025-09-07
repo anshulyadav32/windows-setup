@@ -1,11 +1,20 @@
 # setup.ps1
 # Windows & WSL Development Environment Combined Setup Script
-# Run this script in PowerShell as Administrator
+# This script will automatically elevate to admin permissions if needed
 #
 # Quick install command:
 # iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex
 # OR
 # Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | Invoke-Expression
+#
+# To install all components without prompts:
+# iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll
+# OR
+# powershell -ExecutionPolicy Bypass -Command "& {iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex} -InstallAll"
+
+param (
+    [switch]$InstallAll = $false
+)
 
 # Clear console for better UX
 Clear-Host
@@ -23,10 +32,31 @@ $banner = @"
 
 Write-Host $banner -ForegroundColor Cyan
 
-# Ensure script is run as Administrator
-If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Error "Please run this script as Administrator!"
-    Exit 1
+# Check if script is running as administrator
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+
+# If not running as admin, elevate the script
+if (-NOT $isAdmin) {
+    Write-Host "This script requires administrator privileges. Attempting to elevate..." -ForegroundColor Yellow
+    
+    # Build the arguments to pass to the elevated process
+    $scriptPath = $MyInvocation.MyCommand.Definition
+    $arguments = ""
+    if ($InstallAll) {
+        $arguments = "-InstallAll"
+    }
+    
+    # Restart script with admin rights
+    try {
+        Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" $arguments" -Verb RunAs
+        # Exit the current non-elevated script
+        exit
+    }
+    catch {
+        Write-Error "Failed to elevate script. Please run this script as Administrator!"
+        pause
+        exit 1
+    }
 }
 
 # Function to show menu and get selection
@@ -87,32 +117,44 @@ function Install-AdditionalTools {
     Write-Host "=== Additional Developer Tools Installation Complete ===" -ForegroundColor Cyan
 }
 # Main execution
-$choice = Show-Menu
+if ($InstallAll) {
+    # If -InstallAll parameter is provided, install everything without prompting
+    Write-Host "`n=== Starting Complete Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
+    Write-Host "Installing all components automatically..." -ForegroundColor Yellow
+    Install-WindowsTools
+    Install-WSLUbuntu
+    Install-AdditionalTools
+    Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
+} 
+else {
+    # Show interactive menu if no parameters provided
+    $choice = Show-Menu
 
-switch ($choice) {
-    "1" {
-        Install-WindowsTools
-    }
-    "2" {
-        Install-WSLUbuntu
-    }
-    "3" {
-        Install-AdditionalTools
-    }
-    "4" {
-        Write-Host "`n=== Starting Complete Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
-        Install-WindowsTools
-        Install-WSLUbuntu
-        Install-AdditionalTools
-        Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
-    }
-    "5" {
-        Write-Host "`nExiting setup. No changes were made." -ForegroundColor Yellow
-        Exit 0
-    }
-    default {
-        Write-Host "`nInvalid selection. Please run the script again and select a valid option." -ForegroundColor Red
-        Exit 1
+    switch ($choice) {
+        "1" {
+            Install-WindowsTools
+        }
+        "2" {
+            Install-WSLUbuntu
+        }
+        "3" {
+            Install-AdditionalTools
+        }
+        "4" {
+            Write-Host "`n=== Starting Complete Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
+            Install-WindowsTools
+            Install-WSLUbuntu
+            Install-AdditionalTools
+            Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
+        }
+        "5" {
+            Write-Host "`nExiting setup. No changes were made." -ForegroundColor Yellow
+            Exit 0
+        }
+        default {
+            Write-Host "`nInvalid selection. Please run the script again and select a valid option." -ForegroundColor Red
+            Exit 1
+        }
     }
 }
 
@@ -122,18 +164,3 @@ Write-Host "• Restart your computer to ensure all changes take effect" -Foregr
 Write-Host "• Check out the website at https://win.r-u.live for more information" -ForegroundColor White
 Write-Host "• Visit our GitHub repository at https://github.com/anshulyadav32/windows-setup for updates" -ForegroundColor White
 Write-Host "`n🎉 Happy coding!" -ForegroundColor Cyan
-
-foreach ($tool in $testTools) {
-    $found = $false
-    if ($tool.Command) {
-        $found = (Get-Command $tool.Command -ErrorAction SilentlyContinue) -ne $null
-    } elseif ($tool.Path) {
-        $found = Test-Path $tool.Path
-    }
-    
-    if ($found) {
-        Write-Host "$($tool.Name): OK" -ForegroundColor Green
-    } else {
-        Write-Host "$($tool.Name): NOT FOUND" -ForegroundColor Red
-    }
-}

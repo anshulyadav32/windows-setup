@@ -29,6 +29,13 @@ This will launch an interactive menu where you can choose what to install:
 - Additional Dev Tools (ChatGit, NOI CLI, etc.)
 - Complete Setup (All of the above)
 
+To install all components automatically without prompts:
+```powershell
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll
+```
+
+Note: The script will automatically request administrator privileges if needed.
+
 ### Option 2: Individual Components
 If you prefer to install specific components directly:
 
