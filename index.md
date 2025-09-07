@@ -46,7 +46,37 @@ title: win.r-u.live
          font-size: 1em;
       }
    }
+    .copy-btn {
+       float: right;
+       margin: 4px;
+       font-size: 0.9em;
+       background: #0078d7;
+       color: #fff;
+       border: none;
+       border-radius: 4px;
+       padding: 0.3em 0.8em;
+       cursor: pointer;
+       transition: background 0.2s;
+    }
+    .copy-btn:hover {
+       background: #005fa3;
+    }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+   document.querySelectorAll('pre > code').forEach(function(codeBlock) {
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.textContent = 'Copy';
+      button.onclick = function() {
+         navigator.clipboard.writeText(codeBlock.textContent);
+         button.textContent = 'Copied!';
+         setTimeout(function(){ button.textContent = 'Copy'; }, 1200);
+      };
+      codeBlock.parentNode.insertBefore(button, codeBlock);
+   });
+});
+</script>
 layout: home
 title: win.r-u.live
 <link rel="stylesheet" href="/assets/css/mobile.css">
