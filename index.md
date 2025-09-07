@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
    });
 });
 </script>
+---
+layout: home
+title: win.r-u.live
+---
+<link rel="stylesheet" href="/assets/css/mobile.css">
 <style>
    .container {
       max-width: 600px;
@@ -46,14 +51,7 @@ layout: home
 title: win.r-u.live
 <link rel="stylesheet" href="/assets/css/mobile.css">
 
-
----
-layout: home
-title: win.r-u.live
-<link rel="stylesheet" href="/assets/css/mobile.css">
-
-<main class="container">
-   <!-- Responsive design improvements for mobile and desktop -->
+<div class="container">
    <header style="text-align:center; margin-bottom:2em;">
       <h1>win.r-u.live</h1>
       <p>A modern Windows & WSL dev environment installer</p>
@@ -109,7 +107,7 @@ title: win.r-u.live
          <li>Restart PowerShell or run <code>refreshenv</code> to reload your environment variables.</li>
          <li>Check Node.js and npm are installed:<br>
             <pre><code>node -v
-npm -v</code></pre>
+   <section>
          </li>
          <li>If these commands fail, install Node.js manually or check your PATH.</li>
          <li>Re-run the setup script after confirming tools are available.</li>
@@ -118,6 +116,13 @@ npm -v</code></pre>
    </section>
 
    <section>
+      <h2>Other Installs</h2>
+      <h3>Linux SSL install</h3>
+      <pre><code>curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash</code></pre>
+      <h3>Devtools install (ChatGit, NOI, etc)</h3>
+      <pre><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/modules/devtools/install.ps1 | iex</code></pre>
+   </section>
+</div>
       <h2>Other Installs</h2>
       <h3>Linux SSL install</h3>
       <pre><code>curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash</code></pre>
