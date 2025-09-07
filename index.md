@@ -1,3 +1,4 @@
+<title>win.r-u.live | Windows & WSL Dev Environment Installer</title>
 <script>
 // Add copy buttons to all code blocks
 document.addEventListener('DOMContentLoaded', function() {
@@ -21,6 +22,34 @@ title: win.r-u.live
 ---
 <link rel="stylesheet" href="/assets/css/mobile.css">
 <style>
+   .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0078d7;
+      color: #fff;
+      padding: 0.7em 1.2em;
+      border-radius: 8px;
+      margin-bottom: 2em;
+   }
+   .navbar .nav-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      letter-spacing: 1px;
+   }
+   .navbar .nav-links {
+      display: flex;
+      gap: 1em;
+   }
+   .navbar .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+   }
+   .navbar .nav-links a:hover {
+      color: #cce6ff;
+   }
    .container {
       max-width: 600px;
       margin: auto;
@@ -81,6 +110,14 @@ layout: home
 title: win.r-u.live
 <link rel="stylesheet" href="/assets/css/mobile.css">
 
+<div class="navbar">
+   <span class="nav-title">win.r-u.live</span>
+   <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="https://github.com/anshulyadav32/win.r-u.live" target="_blank">GitHub</a>
+      <a href="https://win.r-u.live">Docs</a>
+   </span>
+</div>
 <div class="container">
    <header style="text-align:center; margin-bottom:2em;">
       <h1>win.r-u.live</h1>
