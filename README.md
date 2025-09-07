@@ -10,7 +10,7 @@ This repository provides PowerShell scripts to quickly set up a modern Windows o
 
 ## Usage
 
-### Option 1: One-liner (Recommended)
+### Option 1: Interactive Menu (Recommended)
 Open PowerShell as Administrator and run:
 ```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex
@@ -21,12 +21,26 @@ Or full command:
 Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | Invoke-Expression
 ```
 
-For WSL2 Ubuntu setup:
+This will launch an interactive menu where you can choose what to install:
+- Windows Developer Tools (VS Code, Git, Node.js, etc.)
+- WSL2 with Ubuntu + Developer Tools
+- Additional Dev Tools (ChatGit, NOI CLI, etc.)
+- Complete Setup (All of the above)
+
+### Option 2: Individual Components
+If you prefer to install specific components directly:
+
+For Windows tools only:
+```powershell
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/installps.ps1 | iex
+```
+
+For WSL2 Ubuntu setup only:
 ```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex
 ```
 
-For devtools install (ChatGit, NOI, etc):
+For devtools only (ChatGit, NOI, etc):
 ```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex
 ```

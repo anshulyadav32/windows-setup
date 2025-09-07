@@ -65,23 +65,48 @@
             <h2 class="text-3xl font-bold mb-4">Quick Start</h2>
             <ol class="list-decimal ml-6 mb-6">
                 <li>Open PowerShell as Administrator</li>
-                <li>Run:<br>
+                <li>Run this command to launch the interactive installer:<br>
                     <div class="relative my-2">
                         <button class="copy-button absolute right-2 top-2">Copy</button>
                         <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code></pre>
                     </div>
                 </li>
-                <li>Or:<br>
+                <li>Or full command:<br>
                     <div class="relative my-2">
                         <button class="copy-button absolute right-2 top-2">Copy</button>
                         <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | Invoke-Expression</code></pre>
                     </div>
                 </li>
+                <li>Select what you want to install from the menu</li>
             </ol>
-            <h3 class="text-xl font-semibold mt-8 mb-2">WSL2 Ubuntu setup</h3>
-            <div class="relative my-2">
-                <button class="copy-button absolute right-2 top-2">Copy</button>
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code></pre>
+            
+            <h3 class="text-xl font-semibold mt-8 mb-2">Direct Installation Options</h3>
+            <p class="mb-4">If you prefer to install specific components directly:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h4 class="font-semibold mb-2">Windows Tools Only</h4>
+                    <div class="relative my-2">
+                        <button class="copy-button absolute right-2 top-2">Copy</button>
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/installps.ps1 | iex</code></pre>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h4 class="font-semibold mb-2">WSL2 Ubuntu Setup</h4>
+                    <div class="relative my-2">
+                        <button class="copy-button absolute right-2 top-2">Copy</button>
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code></pre>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h4 class="font-semibold mb-2">Additional Dev Tools</h4>
+                    <div class="relative my-2">
+                        <button class="copy-button absolute right-2 top-2">Copy</button>
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code></pre>
+                    </div>
+                </div>
             </div>
             <blockquote class="border-l-4 border-blue-600 pl-4 text-gray-700 mt-4">
                 <strong>Note:</strong> Linux commands (like <code>dpkg</code>, <code>lsb_release</code>, etc.) must run inside Ubuntu, not in Windows PowerShell. The script will handle this automatically if you run it as shown above.
