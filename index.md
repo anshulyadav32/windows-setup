@@ -33,8 +33,16 @@ iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/ws
 ```
 
 ## Features
-- Windows: Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, PowerToys, Gemini CLI, Codex CLI
-- WSL2 Ubuntu: Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, ChatGPT CLI
+
+## ChatGPT CLI Install (Windows)
+To install ChatGPT CLI on Windows:
+```powershell
+npm install -g chatgpt-cli
+```
+
+## Edit & Customize
+You can edit any script in this repo to add your own tools or settings. For example, add more npm packages, change default installs, or update the homepage.
+
 
 
 For Linux SSL install:

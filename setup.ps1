@@ -105,6 +105,19 @@ Write-Host "=== Installation Complete ===" -ForegroundColor Green
 Write-Host "[Checkpoint] Main CLI tools installation step complete." -ForegroundColor Magenta
 Write-Host "Restart PowerShell or run 'refreshenv' for changes to take effect." -ForegroundColor Cyan
 
+# Install ChatGPT CLI (Node.js based)
+if ((Get-Command npm -ErrorAction SilentlyContinue) -and (Get-Command node -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing ChatGPT CLI..." -ForegroundColor Yellow
+    npm install -g chatgpt-cli
+    if (Get-Command chatgpt -ErrorAction SilentlyContinue) {
+        Write-Host "[Checkpoint] ChatGPT CLI installed successfully." -ForegroundColor Magenta
+    } else {
+        Write-Host "[Checkpoint] ChatGPT CLI installation failed or not found." -ForegroundColor Red
+    }
+} else {
+    Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
+}
+
 # Install ChatGit CLI (if available)
 if (-Not (Get-Command chatgit -ErrorAction SilentlyContinue)) {
     Write-Host "Installing ChatGit CLI..." -ForegroundColor Yellow
