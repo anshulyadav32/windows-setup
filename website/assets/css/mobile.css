@@ -1,3 +1,38 @@
+/* Mobile-friendly styles for win.r-u.live */
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+.container {
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+pre, code {
+  overflow-x: auto;
+}
+
+.button {
+  display: inline-block;
+  background: #0078d7;
+  color: #fff;
+  padding: 0.7em 1.2em;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0.5em 0;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: #005fa3;
+}
+
 /* Mobile-specific CSS */
 @media (max-width: 768px) {
   /* General adjustments */
