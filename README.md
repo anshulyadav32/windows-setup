@@ -17,6 +17,19 @@ This repository provides a PowerShell script (`setup.ps1`) to quickly set up a m
   - Codex CLI (OpenAI/custom)
 
 ## Usage
+
+### Option 1: One-liner (Recommended)
+Open PowerShell as Administrator and run:
+```powershell
+iwr -useb win.r-u.live/setup.ps1 | iex
+```
+
+Or full command:
+```powershell
+Invoke-WebRequest -UseBasicParsing win.r-u.live/setup.ps1 | Invoke-Expression
+```
+
+### Option 2: Download and run locally
 1. **Download or clone this repository.**
 2. **Open PowerShell as Administrator.**
 3. Run:
