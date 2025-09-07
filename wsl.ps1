@@ -39,7 +39,5 @@ wsl -d Ubuntu bash -c "$ubuntuCommands"
 
 Write-Host "WSL2 Ubuntu setup complete with Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, and ChatGPT CLI."
 
-# Install PowerToys on Windows
-Write-Host "Installing PowerToys on Windows..."
-choco install powertoys -y
-gh pr create --title "Update website and README for WSL2, devtools, and usage clarity" --body "This PR updates the website homepage and README to clarify usage for Windows, WSL2, and devtools scripts. Also adds new scripts for WSL and devtools installation." --base master --head master
+# PowerToys is now installed via the main Windows tools script (install.ps1)
+Write-Host "PowerToys installation is handled by the main Windows setup script."

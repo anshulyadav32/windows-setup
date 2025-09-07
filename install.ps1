@@ -1,11 +1,11 @@
-# installps.ps1
+# install.ps1
 # Windows Development Environment Setup Script
 # Run this script in PowerShell as Administrator
 #
 # Quick install command:
-# iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/installps.ps1 | iex
+# iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex
 # OR
-# Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/installps.ps1 | Invoke-Expression
+# Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | Invoke-Expression
 
 Write-Host "=== Starting Windows Dev Setup ===" -ForegroundColor Cyan
 
@@ -29,6 +29,20 @@ if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     Write-Host "Scoop already installed." -ForegroundColor Green
 }
 Write-Host "[Checkpoint] Scoop installation step complete." -ForegroundColor Magenta
+
+# Install WinGet if not already installed
+if (-Not (Get-Command winget -ErrorAction SilentlyContinue)) {
+    Write-Host "Setting up WinGet..." -ForegroundColor Yellow
+    if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        scoop bucket add extras
+        scoop install extras/winget-cli
+    } else {
+        Write-Host "WinGet setup skipped - please install manually from Microsoft Store." -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "WinGet already installed." -ForegroundColor Green
+}
+Write-Host "[Checkpoint] WinGet installation step complete." -ForegroundColor Magenta
 
 # Install Chocolatey
 if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
@@ -88,6 +102,19 @@ foreach ($pkg in $packages) {
 }
 Write-Host "[Checkpoint] All main packages installation step complete." -ForegroundColor Magenta
 
+# Install PowerToys
+if (-Not (Test-Path "$env:LOCALAPPDATA\Microsoft\PowerToys\PowerToys.exe")) {
+    Write-Host "Installing PowerToys..." -ForegroundColor Yellow
+    if (Get-Command winget -ErrorAction SilentlyContinue) {
+        winget install Microsoft.PowerToys --accept-source-agreements --accept-package-agreements
+    } else {
+        choco install powertoys -y
+    }
+} else {
+    Write-Host "PowerToys already installed." -ForegroundColor Green
+}
+Write-Host "[Checkpoint] PowerToys installation step complete." -ForegroundColor Magenta
+
 # Ensure npm is properly set up
 if (-Not (Get-Command npm -ErrorAction SilentlyContinue)) {
     Write-Host "npm not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
@@ -138,6 +165,21 @@ if (-Not (Get-Command codex -ErrorAction SilentlyContinue)) {
             Write-Host "[Checkpoint] Codex CLI installed successfully." -ForegroundColor Magenta
         } else {
             Write-Host "[Checkpoint] Codex CLI installation failed or not found." -ForegroundColor Red
+        }
+    } else {
+        Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red
+    }
+}
+
+# Install ChatGPT CLI
+if (-Not (Get-Command chatgpt -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing ChatGPT CLI..." -ForegroundColor Yellow
+    if ((Get-Command npm -ErrorAction SilentlyContinue) -and (Get-Command node -ErrorAction SilentlyContinue)) {
+        npm install -g @openai/chatgpt-cli
+        if (Get-Command chatgpt -ErrorAction SilentlyContinue) {
+            Write-Host "[Checkpoint] ChatGPT CLI installed successfully." -ForegroundColor Magenta
+        } else {
+            Write-Host "[Checkpoint] ChatGPT CLI installation failed or not found." -ForegroundColor Red
         }
     } else {
         Write-Host "npm or node not found. Please restart PowerShell or run 'refreshenv' and try again." -ForegroundColor Red

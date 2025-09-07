@@ -75,7 +75,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl font-bold mb-6">Windows & WSL Dev Environment Installer</h1>
             <p class="text-xl mb-8 max-w-3xl mx-auto">
-                Automate your Windows and WSL developer setup in minutes. Installs PowerShell, Ubuntu, Node.js, Python, Git, VS Code, CLI tools, and more.
+                Automate your Windows and WSL developer setup in minutes with a single command. Automatically installs PowerShell, Ubuntu, Node.js, Python, Git, VS Code, PowerToys, CLI tools, and more.
             </p>
             <div class="bg-gray-800 text-green-400 p-4 rounded-lg font-mono text-sm max-w-2xl mx-auto mb-8">
                 <strong>Tech Stack:</strong> PowerShell • Bash • Node.js • Python • PostgreSQL • Docker • VS Code • CLI Tools
@@ -97,19 +97,13 @@
             <h2 class="text-3xl font-bold mb-4">Quick Start</h2>
             <ol class="list-decimal ml-6 mb-6">
                 <li>Open PowerShell (no need for admin privileges - script will auto-elevate)</li>
-                <li>Run this command to launch the interactive installer:<br>
+                <li>Run this command to automatically install all components:<br>
                     <div class="relative my-2">
                         <button class="copy-button absolute right-2 top-2">Copy</button>
                         <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code></pre>
                     </div>
                 </li>
-                <li>Or to install everything automatically:<br>
-                    <div class="relative my-2">
-                        <button class="copy-button absolute right-2 top-2">Copy</button>
-                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll</code></pre>
-                    </div>
-                </li>
-                <li>For interactive mode, select what you want to install from the menu</li>
+                <li>The script will automatically install Windows Developer Tools, WSL2 with Ubuntu, and additional dev tools</li>
             </ol>
             <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded">
                 <p class="text-sm"><strong>Note:</strong> The script will automatically request administrator privileges if needed.</p>
@@ -123,7 +117,7 @@
                     <h4 class="font-semibold mb-2">Windows Tools Only</h4>
                     <div class="relative my-2">
                         <button class="copy-button absolute right-2 top-2">Copy</button>
-                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/installps.ps1 | iex</code></pre>
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex</code></pre>
                     </div>
                 </div>
                 
@@ -163,6 +157,7 @@
                         <li><strong>Databases:</strong> PostgreSQL</li>
                         <li><strong>Containers:</strong> Docker Desktop</li>
                         <li><strong>Terminal:</strong> Windows Terminal, PowerShell improvements</li>
+                        <li><strong>Utilities:</strong> PowerToys, Windows Terminal enhancements</li>
                     </ul>
                 </li>
                 <li>

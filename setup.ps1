@@ -7,14 +7,12 @@
 # OR
 # Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | Invoke-Expression
 #
-# To install all components without prompts:
-# iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll
-# OR
-# powershell -ExecutionPolicy Bypass -Command "& {iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex} -InstallAll"
+# This script automatically installs all components without prompts:
+# - Windows Developer Tools (VS Code, Git, Node.js, Python, Docker, etc.)
+# - WSL2 with Ubuntu + Developer Tools
+# - Additional Dev Tools (ChatGPT, PowerToys, WinGet, Scoop, etc.)
 
-param (
-    [switch]$InstallAll = $false
-)
+# No parameters needed anymore as the script runs automatically
 
 # Clear console for better UX
 Clear-Host
@@ -39,16 +37,12 @@ $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIde
 if (-NOT $isAdmin) {
     Write-Host "This script requires administrator privileges. Attempting to elevate..." -ForegroundColor Yellow
     
-    # Build the arguments to pass to the elevated process
+    # Get the current script path
     $scriptPath = $MyInvocation.MyCommand.Definition
-    $arguments = ""
-    if ($InstallAll) {
-        $arguments = "-InstallAll"
-    }
     
     # Restart script with admin rights
     try {
-        Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" $arguments" -Verb RunAs
+        Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Verb RunAs
         # Exit the current non-elevated script
         exit
     }
@@ -59,18 +53,7 @@ if (-NOT $isAdmin) {
     }
 }
 
-# Function to show menu and get selection
-function Show-Menu {
-    Write-Host "`n📦 Installation Options:" -ForegroundColor Yellow
-    Write-Host "1) 💻 Windows Developer Tools (VS Code, Git, Node.js, Python, Docker, etc.)" -ForegroundColor Green
-    Write-Host "2) 🐧 WSL2 with Ubuntu + Developer Tools" -ForegroundColor Green
-    Write-Host "3) 🔧 Additional Dev Tools (ChatGPT, ChatGit, NOI CLI, WinGit, Scoop, etc.)" -ForegroundColor Green
-    Write-Host "4) ⭐ Install Everything (Complete Setup)" -ForegroundColor Cyan
-    Write-Host "5) ❌ Exit" -ForegroundColor Red
-    
-    $selection = Read-Host "`nEnter your choice (1-5)"
-    return $selection
-}
+# This script now runs automatically without a menu
 
 # Function to test if a command exists
 function Test-CommandExists {
@@ -109,7 +92,7 @@ function Install-WindowsTools {
     Write-Host "`n=== Starting Windows Developer Tools Installation ===" -ForegroundColor Cyan
     
     # Check if script file exists
-    $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath "installps.ps1"
+    $scriptPath = Join-Path -Path $PSScriptRoot -ChildPath "install.ps1"
     
     if (Test-Path $scriptPath) {
         Show-Checkpoint "Found Windows tools installation script at: $scriptPath"
@@ -234,46 +217,19 @@ function Install-AdditionalTools {
     Write-Host "=== Additional Developer Tools Installation Complete ===" -ForegroundColor Cyan
 }
 # Main execution
-if ($InstallAll) {
-    # If -InstallAll parameter is provided, install everything without prompting
-    Write-Host "`n=== Starting Complete Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
-    Write-Host "Installing all components automatically..." -ForegroundColor Yellow
-    Install-WindowsTools
-    Install-WSLUbuntu
-    Install-AdditionalTools
-    Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
-} 
-else {
-    # Show interactive menu if no parameters provided
-    $choice = Show-Menu
+Write-Host "`n=== Starting Automatic Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
+Write-Host "Installing all components automatically..." -ForegroundColor Yellow
 
-    switch ($choice) {
-        "1" {
-            Install-WindowsTools
-        }
-        "2" {
-            Install-WSLUbuntu
-        }
-        "3" {
-            Install-AdditionalTools
-        }
-        "4" {
-            Write-Host "`n=== Starting Complete Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
-            Install-WindowsTools
-            Install-WSLUbuntu
-            Install-AdditionalTools
-            Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
-        }
-        "5" {
-            Write-Host "`nExiting setup. No changes were made." -ForegroundColor Yellow
-            Exit 0
-        }
-        default {
-            Write-Host "`nInvalid selection. Please run the script again and select a valid option." -ForegroundColor Red
-            Exit 1
-        }
-    }
-}
+# Install Windows Developer Tools
+Install-WindowsTools
+
+# Install WSL Ubuntu
+Install-WSLUbuntu
+
+# Install Additional Developer Tools
+Install-AdditionalTools
+
+Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
 
 # Function to test all installations and show summary
 function Test-AllInstallations {
