@@ -14,6 +14,7 @@ sudo apt install -y curl git python3 python3-pip postgresql postgresql-contrib a
 # Node.js
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt install -y nodejs
+
 npm install -g npx
 sudo apt install -y gh
 # Install create-react-app globally (optional)
@@ -30,10 +31,15 @@ sudo apt install -y ansible terraform kubectl
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt install -y git-lfs
 sudo apt install -y make
+npm install -g chatgpt-cli
 "@
 
 # Run commands in Ubuntu
 wsl -d Ubuntu bash -c "$ubuntuCommands"
 
-Write-Host "WSL2 Ubuntu setup complete with Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, and React."
+Write-Host "WSL2 Ubuntu setup complete with Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, and ChatGPT CLI."
+
+# Install PowerToys on Windows
+Write-Host "Installing PowerToys on Windows..."
+choco install powertoys -y
 gh pr create --title "Update website and README for WSL2, devtools, and usage clarity" --body "This PR updates the website homepage and README to clarify usage for Windows, WSL2, and devtools scripts. Also adds new scripts for WSL and devtools installation." --base master --head master

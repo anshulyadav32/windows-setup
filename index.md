@@ -33,8 +33,8 @@ iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/ws
 ```
 
 ## Features
-- Windows: Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, Gemini CLI, Codex CLI
-- WSL2 Ubuntu: Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React
+- Windows: Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, PowerToys, Gemini CLI, Codex CLI
+- WSL2 Ubuntu: Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, ChatGPT CLI
 
 
 For Linux SSL install:
