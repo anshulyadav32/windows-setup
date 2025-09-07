@@ -2,64 +2,81 @@ layout: home
 title: win.r-u.live
 <link rel="stylesheet" href="/assets/css/mobile.css">
 
-<div class="container">
 
+---
+layout: home
+title: win.r-u.live
+<link rel="stylesheet" href="/assets/css/mobile.css">
 
+<main class="container">
+   <header style="text-align:center; margin-bottom:2em;">
+      <h1>win.r-u.live</h1>
+      <p>A modern Windows & WSL dev environment installer</p>
+      <div style="margin:1em 0;">
+         <a class="button" href="https://github.com/anshulyadav32/win.r-u.live">View on GitHub</a>
+         <a class="button" href="https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1">Download setup.ps1</a>
+         <a class="button" href="https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1">Download wsl.ps1</a>
+      </div>
+   </header>
 
-# Welcome to win.r-u.live
+   <section>
+      <h2>Quick Start</h2>
+      <ol>
+         <li>Open PowerShell as Administrator</li>
+         <li>Run:<br>
+            <pre><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | iex</code></pre>
+            <span style="font-size:0.95em;">Or:</span>
+            <pre><code>Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression</code></pre>
+         </li>
+      </ol>
+      <h3>WSL2 Ubuntu setup</h3>
+      <pre><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1 | iex</code></pre>
+      <blockquote>
+         <strong>Note:</strong> Linux commands (like <code>dpkg</code>, <code>lsb_release</code>, etc.) must run inside Ubuntu, not in Windows PowerShell. The script will handle this automatically if you run it as shown above.
+      </blockquote>
+   </section>
 
-This site provides scripts to set up a modern Windows or WSL development environment.
+   <section>
+      <h2>Features</h2>
+      <ul>
+         <li><strong>Windows:</strong> Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, PowerToys, Gemini CLI, Codex CLI, ChatGPT CLI</li>
+         <li><strong>WSL2 Ubuntu:</strong> Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, ChatGPT CLI</li>
+      </ul>
+   </section>
 
-<a class="button" href="https://github.com/anshulyadav32/win.r-u.live">View on GitHub</a>
-<a class="button" href="https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1">Download setup.ps1</a>
-<a class="button" href="https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1">Download wsl.ps1</a>
+   <section>
+      <h2>ChatGPT CLI Install (Windows)</h2>
+      <pre><code>npm install -g chatgpt-cli</code></pre>
+   </section>
 
-## Quick Start
+   <section>
+      <h2>Edit &amp; Customize</h2>
+      <p>You can edit any script in this repo to add your own tools or settings. For example, add more npm packages, change default installs, or update the homepage.</p>
+   </section>
 
-1. Open PowerShell as Administrator
-2. Run:
-   ```powershell
-   iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | iex
-   ```
-   
-   Or full command:
-   ```powershell
-   Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression
-   ```
+   <section>
+      <h2>Troubleshooting &amp; Fixes</h2>
+      <ul>
+         <li>If you see errors like <code>npm</code> or <code>node</code> not recognized, or other tools missing after install:</li>
+         <li>Restart PowerShell or run <code>refreshenv</code> to reload your environment variables.</li>
+         <li>Check Node.js and npm are installed:<br>
+            <pre><code>node -v
+npm -v</code></pre>
+         </li>
+         <li>If these commands fail, install Node.js manually or check your PATH.</li>
+         <li>Re-run the setup script after confirming tools are available.</li>
+      </ul>
+      <p>For more help, visit <a href="https://win.r-u.live">win.r-u.live</a> or the <a href="https://github.com/anshulyadav32/win.r-u.live">GitHub repo</a> for issues and solutions.</p>
+   </section>
 
-For WSL2 Ubuntu setup:
-```powershell
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/wsl.ps1 | iex
-```
-
-## Features
-
-## ChatGPT CLI Install (Windows)
-To install ChatGPT CLI on Windows:
-```powershell
-npm install -g chatgpt-cli
-```
-
-## Edit & Customize
-You can edit any script in this repo to add your own tools or settings. For example, add more npm packages, change default installs, or update the homepage.
-
-
-## Troubleshooting & Fixes
-If you see errors like `npm` or `node` not recognized, or other tools missing after install:
-
-1. **Restart PowerShell** or run `refreshenv` to reload your environment variables.
-2. Check Node.js and npm are installed:
-   ```powershell
-   node -v
-   npm -v
-   ```
-3. If these commands fail, install Node.js manually or check your PATH.
-4. Re-run the setup script after confirming tools are available.
-
-For more help, visit [win.r-u.live](https://win.r-u.live) or the GitHub repo for issues and solutions.
-
-
-
+   <section>
+      <h2>Other Installs</h2>
+      <h3>Linux SSL install</h3>
+      <pre><code>curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash</code></pre>
+      <h3>Devtools install (ChatGit, NOI, etc)</h3>
+      <pre><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/modules/devtools/install.ps1 | iex</code></pre>
+   </section>
+</main>
 For Linux SSL install:
 ```sh
 curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash
