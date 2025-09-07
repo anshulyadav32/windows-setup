@@ -1,4 +1,3 @@
-# modules/devtools/install.ps1
 # Additional Developer Tools Installation Script
 # This script installs supplementary AI and development tools
 
@@ -45,33 +44,24 @@ else {
 }
 Write-Host "=== Starting Additional Developer Tools Installation ===" -ForegroundColor Cyan
 
-# Install ChatGit CLI (if available)
-if (-Not (Get-Command chatgit -ErrorAction SilentlyContinue)) {
-    Write-Host "Installing ChatGit CLI..." -ForegroundColor Yellow
-    npm install -g chatgit
-    if (Get-Command chatgit -ErrorAction SilentlyContinue) {
-        Write-Host "ChatGit CLI installed successfully." -ForegroundColor Green
-    } else {
-        Write-Host "ChatGit CLI installation may need verification." -ForegroundColor Yellow
-    }
-} else {
-    Write-Host "ChatGit CLI already installed." -ForegroundColor Green
-}
-Write-Host "[Checkpoint] ChatGit installation step complete." -ForegroundColor Magenta
 
-# Install NOI CLI (if available)
-if (-Not (Get-Command noi -ErrorAction SilentlyContinue)) {
-    Write-Host "Installing NOI CLI..." -ForegroundColor Yellow
-    npm install -g noi
-    if (Get-Command noi -ErrorAction SilentlyContinue) {
-        Write-Host "NOI CLI installed successfully." -ForegroundColor Green
+# Install ChatGPT Desktop (if available)
+Write-Host "Installing ChatGPT Desktop..." -ForegroundColor Yellow
+if (-Not (Get-Command chatgpt-desktop -ErrorAction SilentlyContinue)) {
+    if (Get-Command winget -ErrorAction SilentlyContinue) {
+        winget install lencx.ChatGPT --accept-source-agreements --accept-package-agreements
+        if (Get-Command chatgpt-desktop -ErrorAction SilentlyContinue) {
+            Write-Host "ChatGPT Desktop installed successfully." -ForegroundColor Green
+        } else {
+            Write-Host "ChatGPT Desktop installation may need verification." -ForegroundColor Yellow
+        }
     } else {
-        Write-Host "NOI CLI installation may need verification." -ForegroundColor Yellow
+        Write-Host "WinGet not found. Please install ChatGPT Desktop manually from https://github.com/lencx/ChatGPT/releases" -ForegroundColor Red
     }
 } else {
-    Write-Host "NOI CLI already installed." -ForegroundColor Green
+    Write-Host "ChatGPT Desktop already installed." -ForegroundColor Green
 }
-Write-Host "[Checkpoint] NOI CLI installation step complete." -ForegroundColor Magenta
+Write-Host "[Checkpoint] ChatGPT Desktop installation step complete." -ForegroundColor Magenta
 
 # Install ChatGPT CLI (if available)
 if (-Not (Get-Command chatgpt -ErrorAction SilentlyContinue)) {
