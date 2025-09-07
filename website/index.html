@@ -37,13 +37,34 @@
                 <div class="flex items-center">
                     <span class="text-2xl font-bold text-blue-600">🪟 win.r-u.live</span>
                 </div>
-                <div class="flex items-center space-x-8">
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-800 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Desktop menu -->
+                <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
                     <a href="#quickstart" class="text-gray-700 hover:text-blue-600 transition-colors">Quick Start</a>
                     <a href="#features" class="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
-                    <a href="#install" class="text-gray-700 hover:text-blue-600 transition-colors">Install</a>
-                    <a href="#troubleshooting" class="text-gray-700 hover:text-blue-600 transition-colors">Troubleshooting</a>
+                    <a href="#tools" class="text-gray-700 hover:text-blue-600 transition-colors">Tools</a>
+                    <a href="#troubleshooting" class="text-gray-700 hover:text-blue-600 transition-colors">Help</a>
                     <a href="https://github.com/anshulyadav32/windows-setup" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">GitHub</a>
+                </div>
+            </div>
+            
+            <!-- Mobile menu, show/hide based on menu state -->
+            <div id="mobile-menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Home</a>
+                    <a href="#quickstart" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Quick Start</a>
+                    <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Features</a>
+                    <a href="#tools" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Tools</a>
+                    <a href="#troubleshooting" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Help</a>
+                    <a href="https://github.com/anshulyadav32/windows-setup" class="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white hover:bg-blue-700">GitHub</a>
                 </div>
             </div>
         </div>
@@ -131,9 +152,41 @@
     <section id="features" class="py-16">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-3xl font-bold mb-4">Features</h2>
-            <ul class="list-disc ml-6 text-lg">
-                <li><strong>Windows:</strong> Installs Chocolatey, GitHub CLI, Git, VS Code, Chrome, Node.js, Python, PostgreSQL, Windows Terminal, PowerToys, Gemini CLI, Codex CLI, ChatGPT CLI</li>
-                <li><strong>WSL2 Ubuntu:</strong> Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, ChatGPT CLI</li>
+            <ul class="list-disc ml-6 text-lg space-y-4">
+                <li>
+                    <strong>Windows Developer Tools:</strong>
+                    <ul class="list-circle ml-6 mt-2">
+                        <li><strong>Package Managers:</strong> Chocolatey, Scoop, WinGet</li>
+                        <li><strong>Version Control:</strong> Git, GitHub CLI</li>
+                        <li><strong>Code Editors:</strong> VS Code with extensions</li>
+                        <li><strong>Languages:</strong> Node.js, Python, TypeScript</li>
+                        <li><strong>Databases:</strong> PostgreSQL</li>
+                        <li><strong>Containers:</strong> Docker Desktop</li>
+                        <li><strong>Terminal:</strong> Windows Terminal, PowerShell improvements</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>AI Development Tools:</strong>
+                    <ul class="list-circle ml-6 mt-2">
+                        <li><strong>ChatGPT CLI:</strong> Command-line interface for ChatGPT</li>
+                        <li><strong>NOI CLI:</strong> Natural language interface for developers</li>
+                        <li><strong>ChatGit:</strong> Git helper with AI assistance</li>
+                        <li><strong>Gemini CLI:</strong> Google AI in your terminal</li>
+                        <li><strong>Codex CLI:</strong> Code assistance and generation</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>WSL2 Ubuntu Setup:</strong>
+                    <ul class="list-circle ml-6 mt-2">
+                        <li><strong>Linux Development:</strong> Full Ubuntu environment</li>
+                        <li><strong>Cross-Platform:</strong> Seamless Windows/Linux integration</li>
+                        <li><strong>DevOps Ready:</strong> Docker, container tools, SSH</li>
+                        <li><strong>Full Stack:</strong> Node.js, Python, Git, PostgreSQL</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Auto-Configuration:</strong> Scripts automatically detect and configure your environment with proper paths, permissions, and dependencies.
+                </li>
             </ul>
         </div>
     </section>
@@ -186,40 +239,172 @@ npm -v</code></pre>
             </div>
         </div>
     </section>
-        <!-- Copy Button Script -->
-        <script>
-            document.querySelectorAll('.copy-button').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var code = btn.nextElementSibling.querySelector('code').textContent;
-                    navigator.clipboard.writeText(code);
-                    btn.textContent = 'Copied!';
-                    setTimeout(function(){ btn.textContent = 'Copy'; }, 1200);
-                });
+        </div>
+    </section>
+    
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
-        </script>
+        }
+        
+        // Copy buttons
+        document.querySelectorAll('.copy-button').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Find the nearest code element - either next to the button or inside parent's siblings
+                let codeElement = btn.nextElementSibling;
+                if (!codeElement || !codeElement.tagName || codeElement.tagName.toLowerCase() !== 'code') {
+                    // Look for code element within the parent or relative structure
+                    const container = btn.closest('div');
+                    if (container) {
+                        codeElement = container.querySelector('code');
+                    }
+                }
+                
+                if (codeElement) {
+                    const textToCopy = codeElement.textContent.trim();
+                    navigator.clipboard.writeText(textToCopy);
+                    
+                    // Visual feedback
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    btn.style.backgroundColor = '#4CAF50';
+                    setTimeout(function(){
+                        btn.textContent = originalText;
+                        btn.style.backgroundColor = '';
+                    }, 1200);
+                }
+            });
+        });
+    </script>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12">Available Tools</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- VS Code -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
+                    <div class="text-3xl mb-4">📝</div>
+                    <h3 class="text-xl font-bold mb-3">VS Code</h3>
+                    <p class="text-gray-600 mb-4">Powerful code editor with extensions</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <span class="font-semibold">Included Extensions:</span>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>GitHub Copilot</li>
+                            <li>Git Integration</li>
+                            <li>Live Server</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Docker -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
+                    <div class="text-3xl mb-4">🐳</div>
+                    <h3 class="text-xl font-bold mb-3">Docker Desktop</h3>
+                    <p class="text-gray-600 mb-4">Container platform for development</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <span class="font-semibold">Features:</span>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>Container management</li>
+                            <li>WSL2 integration</li>
+                            <li>Docker Compose</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Python -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
+                    <div class="text-3xl mb-4">🐍</div>
+                    <h3 class="text-xl font-bold mb-3">Python</h3>
+                    <p class="text-gray-600 mb-4">Latest Python with common packages</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <span class="font-semibold">Includes:</span>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>pip package manager</li>
+                            <li>Virtual environments</li>
+                            <li>Path configuration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- AI Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
+                    <div class="text-3xl mb-4">🤖</div>
+                    <h3 class="text-xl font-bold mb-3">AI Development Tools</h3>
+                    <p class="text-gray-600 mb-4">Multiple AI assistants in your terminal</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <span class="font-semibold">Includes:</span>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>ChatGPT CLI</li>
+                            <li>NOI CLI</li>
+                            <li>ChatGit</li>
+                            <li>Gemini CLI</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Package Managers -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
+                    <div class="text-3xl mb-4">📦</div>
+                    <h3 class="text-xl font-bold mb-3">Package Managers</h3>
+                    <p class="text-gray-600 mb-4">Multiple package managers for flexibility</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <span class="font-semibold">Includes:</span>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>Chocolatey</li>
+                            <li>Scoop</li>
+                            <li>WinGet</li>
+                            <li>npm</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- WSL -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
+                    <div class="text-3xl mb-4">🐧</div>
+                    <h3 class="text-xl font-bold mb-3">WSL2 Ubuntu</h3>
+                    <p class="text-gray-600 mb-4">Linux development environment on Windows</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <span class="font-semibold">Features:</span>
+                        <ul class="list-disc ml-5 mt-2">
+                            <li>Ubuntu setup</li>
+                            <li>Dev tools</li>
+                            <li>Windows integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Installation Page -->
-    <section id="installation" class="py-20 bg-white">
+    <!-- Installation Instructions -->
+    <section id="installation" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12">Installation Methods</h2>
+            <h2 class="text-4xl font-bold text-center mb-12">Advanced Installation Options</h2>
             
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- Quick Remote Install -->
+                <!-- Non-Interactive Install -->
                 <div class="bg-green-50 p-8 rounded-xl border border-green-200">
-                    <h3 class="text-2xl font-bold text-green-800 mb-6">⚡ Quick Remote Install</h3>
-                    <p class="text-gray-700 mb-6">One-line installation from live repository:</p>
+                    <h3 class="text-2xl font-bold text-green-800 mb-6">⚡ Non-Interactive Install</h3>
+                    <p class="text-gray-700 mb-6">Install everything automatically without prompts:</p>
                     <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm relative">
-                        <code>curl -sSL ls.r-u.live/s1.sh | sudo bash</code>
-                        <button class="copy-button absolute top-2 right-2" onclick="copyToClipboard('quick-install')">Copy</button>
+                        <code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll</code>
+                        <button class="copy-button absolute top-2 right-2">Copy</button>
                     </div>
                     <div class="mt-4 text-sm text-gray-600">
                         <ul class="space-y-1">
                             <li>✅ Fastest installation method</li>
                             <li>✅ Always uses latest version</li>
                             <li>✅ Automatic dependency handling</li>
-                            <li>✅ No local download required</li>
+                            <li>✅ No user interaction required</li>
                         </ul>
                     </div>
                 </div>
@@ -229,17 +414,17 @@ npm -v</code></pre>
                     <h3 class="text-2xl font-bold text-blue-800 mb-6">📦 Local Installation</h3>
                     <p class="text-gray-700 mb-6">Clone and install locally for full control:</p>
                     <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm relative">
-                        <code>git clone https://github.com/anshulyadav32/linux-setup.git<br>
-cd linux-setup<br>
-sudo ./install.sh</code>
-                        <button class="copy-button absolute top-2 right-2" onclick="copyToClipboard('local-install')">Copy</button>
+                        <code>git clone https://github.com/anshulyadav32/windows-setup.git<br>
+cd windows-setup<br>
+.\setup.ps1</code>
+                        <button class="copy-button absolute top-2 right-2">Copy</button>
                     </div>
                     <div class="mt-4 text-sm text-gray-600">
                         <ul class="space-y-1">
                             <li>✅ Full control over installation</li>
-                            <li>✅ Installs all 25+ components</li>
-                            <li>✅ Customizable configuration</li>
-                            <li>✅ Production ready</li>
+                            <li>✅ Customize components</li>
+                            <li>✅ Modify scripts as needed</li>
+                            <li>✅ Works offline after cloning</li>
                         </ul>
                     </div>
                 </div>
@@ -247,211 +432,85 @@ sudo ./install.sh</code>
             
             <div class="mt-12 bg-gray-100 p-8 rounded-xl">
                 <h3 class="text-xl font-bold mb-4 text-center">🔧 Individual Module Installation</h3>
-                <p class="text-gray-600 mb-6 text-center">Install specific modules with live remote commands:</p>
-                <div class="grid md:grid-cols-1 gap-4 text-sm">
+                <p class="text-gray-600 mb-6 text-center">Install specific components directly:</p>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>🔐 SSL Module:</strong><br>
-                        <code class="text-green-600">curl -sSL ls.r-u.live/modules/ssl/install.sh | sudo bash</code>
+                        <strong>💻 Windows Dev Tools:</strong><br>
+                        <div class="relative">
+                            <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/installps.ps1 | iex</code>
+                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                        </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>✉️ Mail Module:</strong><br>
-                        <code class="text-green-600">curl -sSL ls.r-u.live/modules/mail/install.sh | sudo bash</code>
+                        <strong>🐧 WSL Ubuntu:</strong><br>
+                        <div class="relative">
+                            <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code>
+                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                        </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>🗄️ Database Module:</strong><br>
-                        <code class="text-green-600">curl -sSL ls.r-u.live/modules/database/install.sh | sudo bash</code>
+                        <strong>🤖 AI Development Tools:</strong><br>
+                        <div class="relative">
+                            <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code>
+                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                        </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>🔒 Firewall Module:</strong><br>
-                        <code class="text-green-600">curl -sSL ls.r-u.live/modules/firewall/install.sh | sudo bash</code>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg">
-                        <strong>💾 Backup Module:</strong><br>
-                        <code class="text-green-600">curl -sSL ls.r-u.live/modules/backup/install.sh | sudo bash</code>
+                        <strong>🐍 Python Tools:</strong><br>
+                        <div class="relative">
+                            <code class="text-green-600">choco install -y python</code>
+                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Usage Methods -->
-    <section id="usage" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12">Usage Methods</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-4">📦 Installation Method</h3>
-                    <p class="text-gray-600 mb-4">Complete server setup with automated installation and configuration.</p>
-                    <div class="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm">
-                        <code># Complete installation<br>
-sudo ./install.sh<br><br>
-# Verify installation<br>
-sudo ./system-status-checker.sh<br><br>
-# Quick status check<br>
-./quick-check.sh</code>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-4">⚡ CLI Method</h3>
-                    <p class="text-gray-600 mb-4">Interactive command-line interface for module management.</p>
-                    <div class="bg-gray-900 text-white p-4 rounded-lg font-mono text-sm">
-                        <code># Main management interface<br>
-sudo ./master.sh<br><br>
-# Quick module access<br>
-./master.sh --module ssl<br>
-./master.sh --module mail<br>
-./master.sh --status</code>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Components Page -->
-    <section id="components" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12">Server Components</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- SSL Module -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
-                    <div class="text-3xl mb-4">🔐</div>
-                    <h3 class="text-xl font-bold mb-3">SSL Certificates</h3>
-                    <p class="text-gray-600 mb-4">Let's Encrypt automation with multi-domain support</p>
-                    <div class="bg-gray-100 p-3 rounded text-sm font-mono">
-                        <code>./modules/ssl/menu.sh</code>
-                    </div>
-                </div>
-
-                <!-- Mail System -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
-                    <div class="text-3xl mb-4">✉️</div>
-                    <h3 class="text-xl font-bold mb-3">Mail System</h3>
-                    <p class="text-gray-600 mb-4">Postfix, Dovecot, Roundcube with DKIM/SPF/DMARC</p>
-                    <div class="bg-gray-100 p-3 rounded text-sm font-mono">
-                        <code>./modules/mail/menu.sh</code>
-                    </div>
-                </div>
-
-                <!-- Database -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
-                    <div class="text-3xl mb-4">🗄️</div>
-                    <h3 class="text-xl font-bold mb-3">Database</h3>
-                    <p class="text-gray-600 mb-4">PostgreSQL, MariaDB, MongoDB with backup automation</p>
-                    <div class="bg-gray-100 p-3 rounded text-sm font-mono">
-                        <code>./modules/database/menu.sh</code>
-                    </div>
-                </div>
-
-                <!-- Firewall & Security -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
-                    <div class="text-3xl mb-4">🔒</div>
-                    <h3 class="text-xl font-bold mb-3">Firewall & Security</h3>
-                    <p class="text-gray-600 mb-4">UFW, Fail2Ban, ClamAV with security auditing</p>
-                    <div class="bg-gray-100 p-3 rounded text-sm font-mono">
-                        <code>./modules/firewall/menu.sh</code>
-                    </div>
-                </div>
-
-                <!-- Backup System -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
-                    <div class="text-3xl mb-4">�</div>
-                    <h3 class="text-xl font-bold mb-3">Backup System</h3>
-                    <p class="text-gray-600 mb-4">Automated backups with encryption and remote sync</p>
-                    <div class="bg-gray-100 p-3 rounded text-sm font-mono">
-                        <code>./modules/backup/menu.sh</code>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modules Page -->
-    <section id="modules" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12">Modules Quick Guide</h2>
-            
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <table class="w-full">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-6 py-4 text-left font-semibold">Module</th>
-                            <th class="px-6 py-4 text-left font-semibold">Quick Commands</th>
-                            <th class="px-6 py-4 text-left font-semibold">Purpose</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 font-semibold">🔐 SSL</td>
-                            <td class="px-6 py-4 font-mono text-sm">./modules/ssl/functions.sh install_certificate domain.com</td>
-                            <td class="px-6 py-4 text-gray-600">Install SSL certificate</td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td class="px-6 py-4 font-semibold">✉️ Mail</td>
-                            <td class="px-6 py-4 font-mono text-sm">./modules/mail/functions.sh add_user user@domain.com</td>
-                            <td class="px-6 py-4 text-gray-600">Add email account</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-semibold">🗄️ Database</td>
-                            <td class="px-6 py-4 font-mono text-sm">./modules/database/functions.sh install_postgresql</td>
-                            <td class="px-6 py-4 text-gray-600">Install PostgreSQL</td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td class="px-6 py-4 font-semibold">� Firewall</td>
-                            <td class="px-6 py-4 font-mono text-sm">./modules/firewall/functions.sh setup_ufw</td>
-                            <td class="px-6 py-4 text-gray-600">Configure firewall</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-semibold">💾 Backup</td>
-                            <td class="px-6 py-4 font-mono text-sm">./modules/backup/functions.sh create_backup</td>
-                            <td class="px-6 py-4 text-gray-600">Create system backup</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-    <!-- Maintenance & Update -->
+    
+    <!-- Update & Maintenance Section -->
     <section id="maintenance" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12">Maintenance & Update</h2>
+            <h2 class="text-4xl font-bold text-center mb-12">Maintenance & Updates</h2>
             
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Update Guide -->
                 <div class="bg-blue-50 p-8 rounded-xl border border-blue-200">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-6">📦 Update System</h3>
-                    <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm mb-4">
-                        <code># Update Linux Setup<br>
-cd /path/to/linux-setup<br>
-git pull origin main<br>
-sudo ./install.sh --update<br><br>
-# Or use quick update<br>
-curl -sSL ls.r-u.live/install.sh | sudo bash</code>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-6">� Update Installation</h3>
+                    <p class="text-gray-700 mb-4">Keep your development environment up-to-date:</p>
+                    <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm mb-4 relative">
+                        <code># Update from repository<br>
+git -C "C:\path\to\windows-setup" pull<br>
+cd "C:\path\to\windows-setup"<br>
+.\setup.ps1<br><br>
+# Or run the remote script again<br>
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code>
+                        <button class="copy-button absolute top-2 right-2">Copy</button>
                     </div>
                 </div>
 
-                <!-- Error Handling -->
+                <!-- Troubleshooting -->
                 <div class="bg-red-50 p-8 rounded-xl border border-red-200">
-                    <h3 class="text-2xl font-bold text-red-800 mb-6">🔧 Fix Common Issues</h3>
-                    <div class="space-y-4 text-sm">
+                    <h3 class="text-2xl font-bold text-red-800 mb-6">🔧 Troubleshooting</h3>
+                    <div class="space-y-4">
                         <div>
-                            <strong>Permission Issues:</strong>
-                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1">
-                                <code>chmod +x *.sh modules/**/*.sh</code>
+                            <strong>Refresh Environment Variables:</strong>
+                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1 relative">
+                                <code>refreshenv</code>
+                                <button class="copy-button absolute top-1 right-1">Copy</button>
                             </div>
                         </div>
                         <div>
-                            <strong>Service Problems:</strong>
-                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1">
-                                <code>sudo systemctl restart apache2</code>
+                            <strong>Check Chocolatey Installation:</strong>
+                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1 relative">
+                                <code>choco --version</code>
+                                <button class="copy-button absolute top-1 right-1">Copy</button>
                             </div>
                         </div>
                         <div>
-                            <strong>SSL Issues:</strong>
-                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1">
-                                <code>sudo certbot renew --dry-run</code>
+                            <strong>Verify Script Execution Policy:</strong>
+                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1 relative">
+                                <code>Get-ExecutionPolicy</code>
+                                <button class="copy-button absolute top-1 right-1">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -465,8 +524,9 @@ curl -sSL ls.r-u.live/install.sh | sudo bash</code>
                     <strong>Always review scripts before running with elevated privileges.</strong>
                     You can inspect any script by opening its URL in your browser before execution.
                 </p>
-                <div class="bg-gray-900 text-yellow-400 p-3 rounded font-mono text-sm">
-                    <code>https://github.com/anshulyadav32/linux-setup</code>
+                <div class="bg-gray-900 text-yellow-400 p-3 rounded font-mono text-sm relative">
+                    <code>https://github.com/anshulyadav32/windows-setup</code>
+                    <button class="copy-button absolute top-2 right-2">Copy</button>
                 </div>
                 <p class="text-gray-600 mt-3">All scripts are open source and available for review on our GitHub repository.</p>
             </div>
@@ -476,7 +536,7 @@ curl -sSL ls.r-u.live/install.sh | sudo bash</code>
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-lg font-semibold mb-4">🪟 Windows Setup</h3>
                     <p class="text-gray-400">Complete development environment setup for Windows and WSL with just one command.</p>
@@ -494,10 +554,15 @@ curl -sSL ls.r-u.live/install.sh | sudo bash</code>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Windows Tools</h3>
+                    <h3 class="text-lg font-semibold mb-4">Tools Included</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li>VS Code Setup</li>
-                        <li>Node.js & Python</li>
+                        <li>VS Code, Git, Chrome</li>
+                        <li>Node.js, Python, Docker</li>
+                        <li>Scoop, Chocolatey, WinGet</li>
+                        <li>ChatGPT CLI, NOI, ChatGit</li>
+                        <li>WSL2 with Ubuntu</li>
+                    </ul>
+                </div>
                         <li>Git & GitHub CLI</li>
                         <li>PostgreSQL Database</li>
                     </ul>
