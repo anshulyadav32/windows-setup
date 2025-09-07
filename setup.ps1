@@ -3,9 +3,9 @@
 # Run this script in PowerShell as Administrator
 #
 # Quick install command:
-# iwr -useb win.r-u.live/setup.ps1 | iex
+# iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | iex
 # OR
-# Invoke-WebRequest -UseBasicParsing win.r-u.live/setup.ps1 | Invoke-Expression
+# Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression
 
 Write-Host "=== Starting Windows Dev Setup ===" -ForegroundColor Cyan
 

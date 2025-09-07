@@ -21,12 +21,12 @@ This repository provides a PowerShell script (`setup.ps1`) to quickly set up a m
 ### Option 1: One-liner (Recommended)
 Open PowerShell as Administrator and run:
 ```powershell
-iwr -useb win.r-u.live/setup.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | iex
 ```
 
 Or full command:
 ```powershell
-Invoke-WebRequest -UseBasicParsing win.r-u.live/setup.ps1 | Invoke-Expression
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression
 ```
 
 ### Option 2: Download and run locally

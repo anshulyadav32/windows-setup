@@ -18,12 +18,12 @@ This site provides a Windows PowerShell installer for a modern dev environment.
 1. Open PowerShell as Administrator
 2. Run:
    ```powershell
-   iwr -useb win.r-u.live/setup.ps1 | iex
+   iwr -useb https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | iex
    ```
    
    Or full command:
    ```powershell
-   Invoke-WebRequest -UseBasicParsing win.r-u.live/setup.ps1 | Invoke-Expression
+   Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/win.r-u.live/master/setup.ps1 | Invoke-Expression
    ```
 
 ## Features
