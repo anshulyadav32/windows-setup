@@ -43,6 +43,8 @@ For WSL2 Ubuntu setup only:
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex
 ```
 
+**Note:** WSL installation may require a system restart. The script will guide you through the process with clear instructions and can be run multiple times to complete the installation.
+
 For devtools only (ChatGPT, NOI, ChatGit, etc):
 ```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex
