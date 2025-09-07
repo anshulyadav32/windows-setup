@@ -1,6 +1,11 @@
 # setup.ps1
 # Windows Development Environment Setup Script
 # Run this script in PowerShell as Administrator
+#
+# Quick install command:
+# iwr -useb win.r-u.live/setup.ps1 | iex
+# OR
+# Invoke-WebRequest -UseBasicParsing win.r-u.live/setup.ps1 | Invoke-Expression
 
 Write-Host "=== Starting Windows Dev Setup ===" -ForegroundColor Cyan
 

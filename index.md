@@ -1,11 +1,9 @@
----
 layout: home
 title: win.r-u.live
----
 <link rel="stylesheet" href="/assets/css/mobile.css">
 
 <div class="container">
----
+
 
 
 # Welcome to win.r-u.live
@@ -20,8 +18,12 @@ This site provides a Windows PowerShell installer for a modern dev environment.
 1. Open PowerShell as Administrator
 2. Run:
    ```powershell
-   Set-ExecutionPolicy Bypass -Scope Process -Force
-   iwr -useb https://win.r-u.live/setup.ps1 | iex
+   iwr -useb win.r-u.live/setup.ps1 | iex
+   ```
+   
+   Or full command:
+   ```powershell
+   Invoke-WebRequest -UseBasicParsing win.r-u.live/setup.ps1 | Invoke-Expression
    ```
 
 ## Features
