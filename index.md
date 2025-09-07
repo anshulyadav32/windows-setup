@@ -44,6 +44,21 @@ npm install -g chatgpt-cli
 You can edit any script in this repo to add your own tools or settings. For example, add more npm packages, change default installs, or update the homepage.
 
 
+## Troubleshooting & Fixes
+If you see errors like `npm` or `node` not recognized, or other tools missing after install:
+
+1. **Restart PowerShell** or run `refreshenv` to reload your environment variables.
+2. Check Node.js and npm are installed:
+   ```powershell
+   node -v
+   npm -v
+   ```
+3. If these commands fail, install Node.js manually or check your PATH.
+4. Re-run the setup script after confirming tools are available.
+
+For more help, visit [win.r-u.live](https://win.r-u.live) or the GitHub repo for issues and solutions.
+
+
 
 For Linux SSL install:
 ```sh
