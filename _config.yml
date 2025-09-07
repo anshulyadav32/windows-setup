@@ -1,0 +1,20 @@
+# Jekyll configuration for GitHub Pages
+
+# Site settings
+name: win.r-u.live
+url: "https://win.r-u.live"
+description: "Windows Dev Environment Setup Script"
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Exclude these files from the site
+exclude:
+  - setup.ps1
+  - modules/
+  - README.md
+
+# Plugins (optional, for future customization)
+plugins:
+  - jekyll-feed
