@@ -7,6 +7,21 @@ function Test-WSLEnabled {
     return !($wslCheck -match "not recognized" -or $wslCheck -match "WSL_E_WSL_OPTIONAL_COMPONENT_REQUIRED")
 }
 
+# Function to check if WSL needs restart after installation
+function Test-WSLNeedsRestart {
+    try {
+        # Try to run a simple WSL command
+        $result = wsl --list 2>&1
+        if ($result -match "Error code: Wsl/WSL_E_WSL_OPTIONAL_COMPONENT_REQUIRED") {
+            return $true
+        }
+        return $false
+    }
+    catch {
+        return $true
+    }
+}
+
 # Function to check if Ubuntu is installed
 function Test-UbuntuInstalled {
     $distros = wsl --list 2>&1
@@ -15,33 +30,37 @@ function Test-UbuntuInstalled {
 
 # Step 1: Check and install WSL if needed
 if (-Not (Test-WSLEnabled)) {
-    Write-Host "Windows Subsystem for Linux is not fully installed. Installing WSL..." -ForegroundColor Yellow
-    Write-Host "This may require a system restart. After restart, please run this script again." -ForegroundColor Cyan
+    Write-Host "`n▶️ Windows Subsystem for Linux is not fully installed. Installing WSL..." -ForegroundColor Yellow
+    Write-Host "▶️ This will require a system restart. After restart, run this script again." -ForegroundColor Cyan
     
     # Enable WSL feature
     try {
         # Run the install command
-        Write-Host "Installing the Windows Subsystem for Linux (WSL)..." -ForegroundColor Yellow
+        Write-Host "`n▶️ Installing the Windows Subsystem for Linux (WSL)..." -ForegroundColor Yellow
         $result = wsl --install --no-distribution 2>&1
         
         # Always set WSL 2 as default
-        Write-Host "Setting WSL 2 as the default version..." -ForegroundColor Yellow
+        Write-Host "▶️ Setting WSL 2 as the default version..." -ForegroundColor Yellow
         wsl --set-default-version 2
         
-        # Check if a restart is needed
-        Write-Host "`n⚠️ IMPORTANT: Your computer needs to be restarted to complete the WSL installation." -ForegroundColor Cyan
-        Write-Host "After restarting, run this script again to continue with the installation." -ForegroundColor Cyan
-        
-        # Ask if user wants to restart now
-        $restart = Read-Host "`nDo you want to restart your computer now? (y/n)"
-        if ($restart -eq 'y' -or $restart -eq 'Y') {
-            Write-Host "`nRestarting your computer in 10 seconds. Please run this script again after restart." -ForegroundColor Yellow
-            Start-Sleep -Seconds 10
-            Restart-Computer -Force
-        } else {
-            Write-Host "`nPlease restart your computer manually and run this script again." -ForegroundColor Yellow
+        # Check if WSL still needs restart
+        if (Test-WSLNeedsRestart) {
+            Write-Host "`n⚠️ IMPORTANT: Your computer needs to be restarted to complete the WSL installation." -ForegroundColor Yellow -BackgroundColor DarkMagenta
+            Write-Host "⚠️ After restarting, run this script again to continue with the installation." -ForegroundColor Yellow -BackgroundColor DarkMagenta
+            
+            # Ask if user wants to restart now
+            $restart = Read-Host "`nDo you want to restart your computer now? (y/n)"
+            if ($restart -eq 'y' -or $restart -eq 'Y') {
+                Write-Host "`n🔄 Restarting your computer in 10 seconds. Please run this script again after restart." -ForegroundColor Yellow
+                Write-Host "📝 Command to run after restart: iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex" -ForegroundColor Green
+                Start-Sleep -Seconds 10
+                Restart-Computer -Force
+            } else {
+                Write-Host "`n⚠️ Please restart your computer manually and run this script again." -ForegroundColor Yellow
+                Write-Host "📝 Command to run after restart: iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex" -ForegroundColor Green
+            }
+            exit 0
         }
-        exit 0
     }
     catch {
         Write-Host "Error installing WSL: $_" -ForegroundColor Red
@@ -51,16 +70,42 @@ if (-Not (Test-WSLEnabled)) {
 
 # Step 2: WSL is enabled, now install Ubuntu if not installed
 if (-Not (Test-UbuntuInstalled)) {
-    Write-Host "WSL is enabled. Now installing Ubuntu distribution..." -ForegroundColor Yellow
+    # Double-check if WSL needs restart before proceeding
+    if (Test-WSLNeedsRestart) {
+        Write-Host "`n⚠️ WSL is installed but requires a restart before Ubuntu can be installed." -ForegroundColor Yellow -BackgroundColor DarkMagenta
+        Write-Host "⚠️ Please restart your computer and run this script again." -ForegroundColor Yellow -BackgroundColor DarkMagenta
+        
+        # Ask if user wants to restart now
+        $restart = Read-Host "`nDo you want to restart your computer now? (y/n)"
+        if ($restart -eq 'y' -or $restart -eq 'Y') {
+            Write-Host "`n🔄 Restarting your computer in 10 seconds. Please run this script again after restart." -ForegroundColor Yellow
+            Write-Host "📝 Command to run after restart: iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex" -ForegroundColor Green
+            Start-Sleep -Seconds 10
+            Restart-Computer -Force
+        } else {
+            Write-Host "`n⚠️ Please restart your computer manually and run this script again." -ForegroundColor Yellow
+            Write-Host "📝 Command to run after restart: iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex" -ForegroundColor Green
+        }
+        exit 0
+    }
+
+    Write-Host "`n▶️ WSL is enabled. Now installing Ubuntu distribution..." -ForegroundColor Yellow
     
     try {
+        # Ensure we're using WSL 2
+        Write-Host "▶️ Setting WSL 2 as default version..." -ForegroundColor Yellow
+        wsl --set-default-version 2
+
+        Write-Host "`n▶️ Installing Ubuntu distribution..." -ForegroundColor Yellow
         wsl --install -d Ubuntu
-        Write-Host "Ubuntu is being installed. Please set up your Ubuntu username and password in the new window that appears." -ForegroundColor Yellow
-        Write-Host "After completing the Ubuntu setup, close that window and run this script again to continue." -ForegroundColor Cyan
+        
+        Write-Host "`n✅ Ubuntu is being installed. Please set up your Ubuntu username and password in the new window that appears." -ForegroundColor Green
+        Write-Host "✅ After completing the Ubuntu setup, close that window and run this script again to continue." -ForegroundColor Green
         exit 0
     }
     catch {
-        Write-Host "Error installing Ubuntu: $_" -ForegroundColor Red
+        Write-Host "`n❌ Error installing Ubuntu: $_" -ForegroundColor Red
+        Write-Host "Try running 'wsl --install -d Ubuntu' manually after restarting your computer." -ForegroundColor Yellow
         exit 1
     }
 }

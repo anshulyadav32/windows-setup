@@ -128,7 +128,9 @@
                         <button class="copy-button absolute right-2 top-2">Copy</button>
                         <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code></pre>
                     </div>
-                    <p class="text-sm text-gray-600 mt-2"><strong>Note:</strong> Requires a system restart during installation. The script will guide you through the process and can be safely run multiple times.</p>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded mt-2">
+                        <p class="text-sm"><strong>⚠️ Important:</strong> WSL installation <b>requires a system restart</b>. Run the script once, restart your computer when prompted, then run it again to complete the installation.</p>
+                    </div>
                 </div>
                 
                 <div class="bg-white p-4 rounded-lg shadow-md">
@@ -204,7 +206,33 @@
     <section id="troubleshooting" class="py-16">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-3xl font-bold mb-4">Troubleshooting &amp; Fixes</h2>
-            <ul class="list-disc ml-6 text-lg mb-4">
+            
+            <!-- WSL Troubleshooting -->
+            <h3 class="text-xl font-semibold mt-8 mb-4">WSL Installation Issues</h3>
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6">
+                <h4 class="font-bold">Error: WSL_E_WSL_OPTIONAL_COMPONENT_REQUIRED</h4>
+                <ol class="list-decimal ml-6 mt-2">
+                    <li>Run the WSL component installation:
+                        <div class="relative my-2">
+                            <button class="copy-button absolute right-2 top-2">Copy</button>
+                            <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>wsl.exe --install --no-distribution</code></pre>
+                        </div>
+                    </li>
+                    <li><strong>Restart your computer</strong> - This step is mandatory!</li>
+                    <li>After restart, set WSL 2 as default and install Ubuntu:
+                        <div class="relative my-2">
+                            <button class="copy-button absolute right-2 top-2">Copy</button>
+                            <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>wsl --set-default-version 2
+wsl --install -d Ubuntu</code></pre>
+                        </div>
+                    </li>
+                </ol>
+                <p class="mt-2 text-sm">For detailed WSL installation help, see our <a href="docs/wsl-guide.md" class="text-blue-600 underline">WSL Installation Guide</a>.</p>
+            </div>
+            
+            <!-- Node.js Issues -->
+            <h3 class="text-xl font-semibold mt-8 mb-4">Node.js Issues</h3>
+            <ul class="list-disc ml-6 mb-4">
                 <li>If you see errors like <code>npm</code> or <code>node</code> not recognized, or other tools missing after install:</li>
                 <li>Restart PowerShell or run <code>refreshenv</code> to reload your environment variables.</li>
                 <li>Check Node.js and npm are installed:<br>
@@ -217,6 +245,7 @@ npm -v</code></pre>
                 <li>If these commands fail, install Node.js manually or check your PATH.</li>
                 <li>Re-run the setup script after confirming tools are available.</li>
             </ul>
+            
             <p>For more help, visit <a href="https://win.r-u.live" class="text-blue-600 underline">win.r-u.live</a>, the <a href="https://github.com/anshulyadav32/windows-setup" class="text-blue-600 underline">GitHub repo</a>, or the <a href="https://anshulyadav32.github.io/windows-setup/" class="text-green-600 underline">Live GitHub Pages site</a> for issues and solutions.</p>
         </div>
     </section>

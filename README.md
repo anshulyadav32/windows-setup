@@ -28,6 +28,15 @@ This will automatically install all components:
 - WSL2 with Ubuntu + Developer Tools 
 - Additional Dev Tools (ChatGPT, NOI CLI, ChatGit, etc.)
 
+### WSL Installation Note
+
+⚠️ **Important**: Installing WSL requires a system restart. The script will:
+1. Install the WSL component
+2. Prompt you to restart your computer
+3. After restart, you'll need to run the script again to complete the installation
+
+See the [WSL Installation Guide](docs/wsl-guide.md) for detailed instructions or troubleshooting.
+
 Note: The script will automatically request administrator privileges if needed.
 
 ### Option 2: Individual Components
