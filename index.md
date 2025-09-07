@@ -1,3 +1,47 @@
+<script>
+// Add copy buttons to all code blocks
+document.addEventListener('DOMContentLoaded', function() {
+   document.querySelectorAll('pre > code').forEach(function(codeBlock) {
+      var button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.textContent = 'Copy';
+      button.style = 'float:right; margin:4px; font-size:0.9em;';
+      button.onclick = function() {
+         navigator.clipboard.writeText(codeBlock.textContent);
+         button.textContent = 'Copied!';
+         setTimeout(function(){ button.textContent = 'Copy'; }, 1200);
+      };
+      codeBlock.parentNode.insertBefore(button, codeBlock);
+   });
+});
+</script>
+<style>
+   .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+   }
+   @media (max-width: 700px) {
+      .container {
+         max-width: 98vw;
+         padding: 0.5rem;
+      }
+      h1 {
+         font-size: 2em;
+      }
+      pre, code {
+         font-size: 0.95em;
+      }
+      .button {
+         width: 100%;
+         margin: 0.5em 0;
+         font-size: 1em;
+      }
+   }
+</style>
 layout: home
 title: win.r-u.live
 <link rel="stylesheet" href="/assets/css/mobile.css">
@@ -9,6 +53,7 @@ title: win.r-u.live
 <link rel="stylesheet" href="/assets/css/mobile.css">
 
 <main class="container">
+   <!-- Responsive design improvements for mobile and desktop -->
    <header style="text-align:center; margin-bottom:2em;">
       <h1>win.r-u.live</h1>
       <p>A modern Windows & WSL dev environment installer</p>
@@ -45,8 +90,11 @@ title: win.r-u.live
    </section>
 
    <section>
-      <h2>ChatGPT CLI Install (Windows)</h2>
-      <pre><code>npm install -g chatgpt-cli</code></pre>
+      <h2>ChatGPT Desktop &amp; Codex CLI</h2>
+      <h3>ChatGPT Desktop (Windows)</h3>
+      <p>For a desktop ChatGPT app, download from <a href="https://github.com/lencx/ChatGPT/releases" target="_blank">lencx/ChatGPT</a> and install.</p>
+      <h3>Codex CLI (Windows)</h3>
+      <pre><code>npm install -g codex-cli</code></pre>
    </section>
 
    <section>
