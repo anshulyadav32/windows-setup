@@ -123,9 +123,9 @@ function Show-Checkpoint {
     )
     
     if ($Success) {
-        Write-Host "[✓] CHECKPOINT: $Message" -ForegroundColor Green
+        Write-Host "[OK] CHECKPOINT: $Message" -ForegroundColor Green
     } else {
-        Write-Host "[✗] CHECKPOINT: $Message" -ForegroundColor Red
+        Write-Host "[FAIL] CHECKPOINT: $Message" -ForegroundColor Red
     }
 }
 
@@ -262,11 +262,34 @@ function Install-AdditionalTools {
 Write-Host "`n=== Starting Automatic Installation (Windows + WSL + Additional Tools) ===" -ForegroundColor Cyan
 Write-Host "Installing all components automatically..." -ForegroundColor Yellow
 
+
 # Install Windows Developer Tools
 Install-WindowsTools
 
-# Install WSL Ubuntu
-Install-WSLUbuntu
+# Check if WSL is supported before running WSL install
+$wslSupported = $false
+try {
+    $osVersion = (Get-CimInstance Win32_OperatingSystem).Version
+    $majorVersion = $osVersion.Split('.')[0]
+    $minorVersion = $osVersion.Split('.')[1]
+    # Windows 10 (10.x) or Windows 11 (10.0.22000+)
+    if ($majorVersion -eq '10') {
+        # Check if WSL feature is available
+        $wslFeature = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -ErrorAction SilentlyContinue
+        if ($wslFeature.State -eq 'Enabled' -or $wslFeature.State -eq 'Disabled') {
+            $wslSupported = $true
+        }
+    }
+} catch {
+    $wslSupported = $false
+}
+
+if ($wslSupported) {
+    Write-Host "WSL is supported on this system. Proceeding with WSL installation..." -ForegroundColor Cyan
+    Install-WSLUbuntu
+} else {
+    Write-Host "WSL is not supported on this system. Skipping WSL installation." -ForegroundColor Yellow
+}
 
 # Install Additional Developer Tools
 Install-AdditionalTools
@@ -275,7 +298,7 @@ Write-Host "`n=== Complete Installation Finished! ===" -ForegroundColor Cyan
 
 # Function to test all installations and show summary
 function Test-AllInstallations {
-    Write-Host "`n=== 🔍 Testing All Installations ===" -ForegroundColor Cyan
+    Write-Host "`n=== Testing All Installations ===" -ForegroundColor Cyan
     
     $allTools = @(
         # Dev essentials
@@ -320,22 +343,20 @@ function Test-AllInstallations {
             $results[$category].Installed++
         }
         
-        $status = if ($installed) { "✓" } else { "✗" }
-        Write-Host "[$status] $($tool.Name)" -ForegroundColor $(if ($installed) { "Green" } else { "Red" })
+    $status = if ($installed) { "OK" } else { "FAIL" }
+    Write-Host "[$status] $($tool.Name)" -ForegroundColor $(if ($installed) { "Green" } else { "Red" })
     }
     
     # Display summary
-    Write-Host "`n=== 📊 Installation Summary ===" -ForegroundColor Yellow
+    Write-Host "`n=== Installation Summary ===" -ForegroundColor Yellow
     foreach ($category in $results.Keys) {
         $installed = $results[$category].Installed
         $total = $results[$category].Total
         $percentage = [math]::Round(($installed / $total) * 100)
         
-        Write-Host "$category : $installed/$total installed ($percentage%)" -ForegroundColor $(
-            if ($percentage -eq 100) { "Green" } 
-            elseif ($percentage -ge 50) { "Yellow" } 
-            else { "Red" }
-        )
+        $output = $category + ' : ' + $installed + '/' + $total + ' installed (' + $percentage + ' percent)'
+        $color = if ($percentage -eq 100) { "Green" } elseif ($percentage -ge 50) { "Yellow" } else { "Red" }
+        Write-Host $output -ForegroundColor $color
     }
     
     # Overall status
@@ -343,19 +364,25 @@ function Test-AllInstallations {
     $totalTools = $allTools.Count
     $overallPercentage = [math]::Round(($totalInstalled / $totalTools) * 100)
     
-    Write-Host "`n=== 🏁 Overall Installation Status: $totalInstalled/$totalTools ($overallPercentage%) ===" -ForegroundColor $(
-        if ($overallPercentage -eq 100) { "Green" } 
-        elseif ($overallPercentage -ge 70) { "Yellow" } 
-        else { "Red" }
-    )
+    $overallOutput = "`n=== Overall Installation Status: " + $totalInstalled + '/' + $totalTools + ' (' + $overallPercentage + ' percent) ==='
+    if ($overallPercentage -eq 100) {
+        $overallColor = 'Green'
+    } elseif ($overallPercentage -ge 70) {
+        $overallColor = 'Yellow'
+    } else {
+        $overallColor = 'Red'
+    }
+    Write-Host $overallOutput -ForegroundColor $overallColor
 }
 
 # Run final test
 Test-AllInstallations
 
 # Final instructions
-Write-Host "`n📋 Setup complete! Here's what to do next:" -ForegroundColor Yellow
-Write-Host "• Restart your computer to ensure all changes take effect" -ForegroundColor White
-Write-Host "• Check out the website at https://win.r-u.live for more information" -ForegroundColor White
-Write-Host "• Visit our GitHub repository at https://github.com/anshulyadav32/windows-setup for updates" -ForegroundColor White
-Write-Host "`n🎉 Happy coding!" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Setup complete! Here's what to do next:" -ForegroundColor Yellow
+Write-Host "- Restart your computer to ensure all changes take effect" -ForegroundColor White
+Write-Host "- Check out the website at https://win.r-u.live for more information" -ForegroundColor White
+Write-Host "- Visit our GitHub repository at https://github.com/anshulyadav32/windows-setup for updates" -ForegroundColor White
+Write-Host ""
+Write-Host "Happy coding!" -ForegroundColor Cyan
