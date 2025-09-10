@@ -197,12 +197,15 @@
     <!-- Install Section -->
     <section id="install" class="py-16 bg-white text-gray-900">
         <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Install ChatGPT Desktop &amp; Codex CLI</h2>
-            <h3 class="text-xl font-semibold mb-2">ChatGPT Desktop (Windows)</h3>
-            <p>For a desktop ChatGPT app, download from <a href="https://github.com/lencx/ChatGPT/releases" target="_blank" class="text-blue-600 underline">lencx/ChatGPT</a> and install.</p>
-            <h3 class="text-xl font-semibold mt-6 mb-2">Codex CLI (Windows)</h3>
+            <h2 class="text-3xl font-bold mb-4">Install GitHub CLI &amp; Notion Tools</h2>
+            <h3 class="text-xl font-semibold mb-2">GitHub CLI (Windows)</h3>
+            <p>For GitHub command-line tools, install with:</p>
             <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>npm install -g codex-cli</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>winget install --id GitHub.cli</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+            </div>
+            <h3 class="text-xl font-semibold mt-6 mb-2">Notion CLI (Windows)</h3>
+            <div class="relative my-2">
+                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>npm install -g @notionhq/client</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
             </div>
             
             <h3 class="text-xl font-semibold mt-6 mb-2">WSL Installation</h3>
@@ -227,7 +230,7 @@
             <div class="relative my-2">
                 <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
             </div>
-            <h3 class="text-xl font-semibold mt-6 mb-2">Devtools install (ChatGit, NOI, etc)</h3>
+            <h3 class="text-xl font-semibold mt-6 mb-2">Developer Tools Install (GitHub, Notion, etc)</h3>
             <div class="relative my-2">
                 <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
             </div>
@@ -288,15 +291,15 @@
                 <!-- AI Tools -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border card-hover">
                     <div class="text-3xl mb-4">🤖</div>
-                    <h3 class="text-xl font-bold mb-3">AI Development Tools</h3>
-                    <p class="text-gray-600 mb-4">Multiple AI assistants in your terminal</p>
+                    <h3 class="text-xl font-bold mb-3">Development Tools</h3>
+                    <p class="text-gray-600 mb-4">Enhanced development experience with CLI tools</p>
                     <div class="bg-gray-100 p-3 rounded text-sm">
                         <span class="font-semibold">Includes:</span>
                         <ul class="list-disc ml-5 mt-2">
-                            <li>ChatGPT CLI</li>
-                            <li>NOI CLI</li>
-                            <li>ChatGit</li>
-                            <li>Gemini CLI</li>
+                            <li>GitHub CLI</li>
+                            <li>Notion Integration</li>
+                            <li>Git Extensions</li>
+                            <li>Command Line Utilities</li>
                         </ul>
                     </div>
                 </div>
@@ -503,9 +506,9 @@ iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/set
                         <li>VS Code, Git, Chrome</li>
                         <li>Node.js, Python, Docker</li>
                         <li>Scoop, Chocolatey, WinGet</li>
-                        <li>ChatGPT CLI, NOI, ChatGit</li>
+                        <li>GitHub CLI, Notion Tools</li>
                         <li>WSL2 with Ubuntu</li>
-                        <li>Git &amp; GitHub CLI</li>
+                        <li>Git Extensions</li>
                         <li>PostgreSQL Database</li>
                     </ul>
                 </div>
