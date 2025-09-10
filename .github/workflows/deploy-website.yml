@@ -1,4 +1,4 @@
-name: Deploy Website Branch to GitHub Pages
+name: Deploy Website
 
 on:
   push:
@@ -9,13 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout website branch
+      - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          ref: website
+          node-version: '20'
+      - name: Build static site (if needed)
+        run: |
+          echo "No build step required for static HTML."
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website
           publish_branch: gh-pages
-          publish_dir: .
