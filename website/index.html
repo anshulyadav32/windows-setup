@@ -106,79 +106,36 @@
             <p class="mb-4">If you prefer to install specific components directly:</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between h-full">
                     <h4 class="font-semibold mb-2">Windows Tools Only</h4>
-                    <div class="relative my-2">
-                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex</code></pre>
-                        <button class="copy-button absolute right-2 top-2">Copy</button>
+                    <div class="relative my-2 flex-1 flex flex-col justify-end">
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto mb-2"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex</code></pre>
+                        <button class="copy-button w-full md:w-auto">Copy</button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between h-full">
                     <h4 class="font-semibold mb-2">WSL2 Ubuntu Setup</h4>
-                    <div class="relative my-2">
-                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code></pre>
-                        <button class="copy-button absolute right-2 top-2">Copy</button>
+                    <div class="relative my-2 flex-1 flex flex-col justify-end">
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto mb-2"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code></pre>
+                        <button class="copy-button w-full md:w-auto">Copy</button>
                     </div>
                     <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded mt-2">
                         <p class="text-sm"><strong>⚠️ Important:</strong> WSL installation <b>requires a system restart</b>. Run the script once, restart your computer when prompted, then run it again to complete the installation.</p>
                     </div>
                 </div>
                 
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between h-full">
                     <h4 class="font-semibold mb-2">Additional Dev Tools</h4>
-                    <div class="relative my-2">
-                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code></pre>
-                        <button class="copy-button absolute right-2 top-2">Copy</button>
+                    <div class="relative my-2 flex-1 flex flex-col justify-end">
+                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto mb-2"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code></pre>
+                        <button class="copy-button w-full md:w-auto">Copy</button>
                     </div>
                 </div>
             </div>
             <blockquote class="border-l-4 border-blue-600 pl-4 text-gray-700 mt-4">
                 <strong>Note:</strong> Linux commands (like <code>dpkg</code>, <code>lsb_release</code>, etc.) must run inside Ubuntu, not in Windows PowerShell. The script will handle this automatically if you run it as shown above.
             </blockquote>
-        </div>
-    </section>
-    <!-- Features Section -->
-    <section id="features" class="py-16">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Features</h2>
-            <ul class="list-disc ml-6 text-lg space-y-4">
-                <li>
-                    <strong>Windows Developer Tools:</strong>
-                    <ul class="list-circle ml-6 mt-2">
-                        <li><strong>Package Managers:</strong> Chocolatey, Scoop, WinGet</li>
-                        <li><strong>Version Control:</strong> Git, GitHub CLI</li>
-                        <li><strong>Code Editors:</strong> VS Code with extensions</li>
-                        <li><strong>Languages:</strong> Node.js, Python, TypeScript</li>
-                        <li><strong>Databases:</strong> PostgreSQL</li>
-                        <li><strong>Containers:</strong> Docker Desktop</li>
-                        <li><strong>Terminal:</strong> Windows Terminal, PowerShell improvements</li>
-                        <li><strong>Utilities:</strong> PowerToys, Windows Terminal enhancements</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>AI Development Tools:</strong>
-                    <ul class="list-circle ml-6 mt-2">
-                        <li><strong>ChatGPT CLI:</strong> Command-line interface for ChatGPT</li>
-                        <li><strong>NOI CLI:</strong> Natural language interface for developers</li>
-                        <li><strong>ChatGit:</strong> Git helper with AI assistance</li>
-                        <li><strong>Gemini CLI:</strong> Google AI in your terminal</li>
-                        <li><strong>Codex CLI:</strong> Code assistance and generation</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>WSL2 Ubuntu Setup:</strong>
-                    <ul class="list-circle ml-6 mt-2">
-                        <li><strong>Linux Development:</strong> Full Ubuntu environment</li>
-                        <li><strong>Cross-Platform:</strong> Seamless Windows/Linux integration</li>
-                        <li><strong>DevOps Ready:</strong> Docker, container tools, SSH</li>
-                        <li><strong>Full Stack:</strong> Node.js, Python, Git, PostgreSQL</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Auto-Configuration:</strong> Scripts automatically detect and configure your environment with proper paths, permissions, and dependencies.
-                </li>
-            </ul>
         </div>
     </section>
     <!-- Install Section -->
@@ -194,49 +151,8 @@
             </div>
         </div>
     </section>
-    <!-- Troubleshooting Section -->
-    <section id="troubleshooting" class="py-16">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Troubleshooting &amp; Fixes</h2>
-            
-            <!-- WSL Troubleshooting -->
-            <h3 class="text-xl font-semibold mt-8 mb-4">WSL Installation Issues</h3>
-            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6">
-                <h4 class="font-bold">Error: WSL_E_WSL_OPTIONAL_COMPONENT_REQUIRED</h4>
-                <ol class="list-decimal ml-6 mt-2">
-                    <li>Run the WSL component installation:
-                        <div class="relative my-2">
-                            <button class="copy-button absolute right-2 top-2">Copy</button>
-                            <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>wsl.exe --install --no-distribution</code></pre>
-                        </div>
-                    </li>
-                    <li><strong>Restart your computer</strong> - This step is mandatory!</li>
-                    <li>After restart, set WSL 2 as default and install Ubuntu:
-                        <div class="relative my-2">
-                            <button class="copy-button absolute right-2 top-2">Copy</button>
-                            <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>wsl --set-default-version 2
 wsl --install -d Ubuntu</code></pre>
-                        </div>
-                    </li>
-                </ol>
-                <p class="mt-2 text-sm">For detailed WSL installation help, see our <a href="docs/wsl-guide.md" class="text-blue-600 underline">WSL Installation Guide</a>.</p>
-            </div>
-            
-            <!-- Node.js Issues -->
-            <h3 class="text-xl font-semibold mt-8 mb-4">Node.js Issues</h3>
-            <ul class="list-disc ml-6 mb-4">
-                <li>If you see errors like <code>npm</code> or <code>node</code> not recognized, or other tools missing after install:</li>
-                <li>Restart PowerShell or run <code>refreshenv</code> to reload your environment variables.</li>
-                <li>Check Node.js and npm are installed:<br>
-                    <div class="relative my-2">
-                        <button class="copy-button absolute right-2 top-2">Copy</button>
-                        <pre class="bg-gray-100 rounded p-2 overflow-x-auto"><code>node -v
 npm -v</code></pre>
-                    </div>
-                </li>
-                <li>If these commands fail, install Node.js manually or check your PATH.</li>
-                <li>Re-run the setup script after confirming tools are available.</li>
-            </ul>
             
             <p>For more help, visit <a href="https://win.r-u.live" class="text-blue-600 underline">win.r-u.live</a>, the <a href="https://github.com/anshulyadav32/windows-setup" class="text-blue-600 underline">GitHub repo</a>, or the <a href="https://anshulyadav32.github.io/windows-setup/" class="text-green-600 underline">Live GitHub Pages site</a> for issues and solutions.</p>
         </div>
