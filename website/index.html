@@ -137,50 +137,38 @@
                 <p class="text-sm"><strong>Note:</strong> The script will automatically request administrator privileges if needed.</p>
             </div>
             
-            <h3 class="text-xl font-semibold mt-8 mb-2">Direct Installation Options</h3>
-            <p class="mb-4">If you prefer to install specific components directly:</p>
+            <h3 class="text-xl font-semibold mt-8 mb-4">Direct Installation Options</h3>
+            <p class="mb-6">If you prefer to install specific components directly:</p>
             
-            <div class="flex flex-col gap-4 mb-6">
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h4 class="font-semibold mb-2">Windows Tools Only</h4>
-                    <div class="flex flex-col md:flex-row gap-4 items-start">
-                        <div class="relative flex-grow">
-                            <pre class="bg-gray-100 rounded p-4 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-                        </div>
-                        <div class="md:w-1/3">
-                            <p class="text-gray-600">Installs essential Windows development tools and utilities.</p>
-                        </div>
+            <div class="space-y-6 mb-6">
+                <div>
+                    <h4 class="font-semibold mb-3">Windows Tools Only</h4>
+                    <div class="relative mb-2">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
+                    <p class="text-gray-600">Installs essential Windows development tools and utilities.</p>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h4 class="font-semibold mb-2">WSL2 Ubuntu Setup</h4>
-                    <div class="flex flex-col md:flex-row gap-4 items-start">
-                        <div class="relative flex-grow">
-                            <pre class="bg-gray-100 rounded p-4 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-                        </div>
-                        <div class="md:w-1/3">
-                            <p class="text-gray-600">Sets up WSL2 with Ubuntu and configures it for development.</p>
-                        </div>
+                <div>
+                    <h4 class="font-semibold mb-3">WSL2 Ubuntu Setup</h4>
+                    <div class="relative mb-2">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
-                    <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded mt-3">
+                    <p class="text-gray-600 mb-3">Sets up WSL2 with Ubuntu and configures it for development.</p>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded">
                         <p class="text-sm"><strong>⚠️ Important:</strong> WSL installation <b>requires a system restart</b>. Run the script once, restart your computer when prompted, then run it again to complete the installation.</p>
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <h4 class="font-semibold mb-2">Additional Dev Tools</h4>
-                    <div class="flex flex-col md:flex-row gap-4 items-start">
-                        <div class="relative flex-grow">
-                            <pre class="bg-gray-100 rounded p-4 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-                        </div>
-                        <div class="md:w-1/3">
-                            <p class="text-gray-600">Installs development tools, CLI utilities, and extra packages.</p>
-                        </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Additional Dev Tools</h4>
+                    <div class="relative mb-2">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
+                    <p class="text-gray-600">Installs development tools, CLI utilities, and extra packages.</p>
                 </div>
             </div>
-            <blockquote class="border-l-4 border-blue-600 pl-4 text-gray-700 mt-4">
+            <blockquote class="border-l-4 border-blue-600 pl-4 text-gray-700 mt-6">
                 <strong>Note:</strong> Linux commands (like <code>dpkg</code>, <code>lsb_release</code>, etc.) must run inside Ubuntu, not in Windows PowerShell. The script will handle this automatically if you run it as shown above.
             </blockquote>
         </div>
@@ -189,25 +177,37 @@
     <!-- Install Section -->
     <section id="install" class="py-16 bg-white text-gray-900">
         <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Install GitHub CLI &amp; Notion Tools</h2>
-            <h3 class="text-xl font-semibold mb-2">GitHub CLI (Windows)</h3>
-            <p>For GitHub command-line tools, install with:</p>
-            <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>winget install --id GitHub.cli</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-            </div>
-            <h3 class="text-xl font-semibold mt-6 mb-2">Notion CLI (Windows)</h3>
-            <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>npm install -g @notionhq/client</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-            </div>
+            <h2 class="text-3xl font-bold mb-6">Install GitHub CLI &amp; Notion Tools</h2>
             
-            <h3 class="text-xl font-semibold mt-6 mb-2">WSL Installation</h3>
-            <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>wsl --install -d Ubuntu</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-            </div>
-            
-            <h3 class="text-xl font-semibold mt-6 mb-2">Verify Node.js Installation</h3>
-            <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>npm -v</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">GitHub CLI (Windows)</h3>
+                    <p class="mb-3">For GitHub command-line tools, install with:</p>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>winget install --id GitHub.cli</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Notion CLI (Windows)</h3>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>npm install -g @notionhq/client</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">WSL Installation</h3>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>wsl --install -d Ubuntu</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Verify Node.js Installation</h3>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>npm -v</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
             </div>
             
             <p class="mt-4">For more help, visit <a href="https://win.r-u.live" class="text-blue-600 underline">win.r-u.live</a>, the <a href="https://github.com/anshulyadav32/windows-setup" class="text-blue-600 underline">GitHub repo</a>, or the <a href="https://anshulyadav32.github.io/windows-setup/" class="text-green-600 underline">Live GitHub Pages site</a> for issues and solutions.</p>
@@ -217,14 +217,22 @@
     <!-- Other Installs Section -->
     <section id="other" class="py-16 bg-white text-gray-900">
         <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Other Installs</h2>
-            <h3 class="text-xl font-semibold mb-2">Linux SSL install</h3>
-            <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
-            </div>
-            <h3 class="text-xl font-semibold mt-6 mb-2">Developer Tools Install (GitHub, Notion, etc)</h3>
-            <div class="relative my-2">
-                <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+            <h2 class="text-3xl font-bold mb-6">Other Installs</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Linux SSL install</h3>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>curl -sSL https://win.r-u.live/modules/ssl/install.sh | sudo bash</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Developer Tools Install (GitHub, Notion, etc)</h3>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -340,9 +348,8 @@
                 <div class="bg-green-50 p-8 rounded-xl border border-green-200">
                     <h3 class="text-2xl font-bold text-green-800 mb-6">⚡ Non-Interactive Install</h3>
                     <p class="text-gray-700 mb-6">Install everything automatically without prompts:</p>
-                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm relative">
-                        <code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll</code>
-                        <button class="copy-button absolute top-2 right-2">Copy</button>
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
                     <div class="mt-4 text-sm text-gray-600">
                         <ul class="space-y-1">
@@ -358,11 +365,10 @@
                 <div class="bg-blue-50 p-8 rounded-xl border border-blue-200">
                     <h3 class="text-2xl font-bold text-blue-800 mb-6">📦 Local Installation</h3>
                     <p class="text-gray-700 mb-6">Clone and install locally for full control:</p>
-                    <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm relative">
-                        <pre class="whitespace-pre-line"><code>git clone https://github.com/anshulyadav32/windows-setup.git
+                    <div class="relative">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto whitespace-pre-line" style="position: relative;"><code>git clone https://github.com/anshulyadav32/windows-setup.git
 cd windows-setup
-.\setup.ps1</code></pre>
-                        <button class="copy-button absolute top-2 right-2">Copy</button>
+.\setup.ps1</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
                     <div class="mt-4 text-sm text-gray-600">
                         <ul class="space-y-1">
@@ -378,27 +384,24 @@ cd windows-setup
             <div class="mt-12 bg-gray-100 p-8 rounded-xl">
                 <h3 class="text-xl font-bold mb-4 text-center">🔧 Individual Module Installation</h3>
                 <p class="text-gray-600 mb-6 text-center">Install specific components directly:</p>
-                <div class="flex flex-col md:flex-row gap-4 text-sm">
+                <div class="flex flex-col md:flex-row gap-4">
                     <!-- Windows Dev Tools: installps.ps1 reference removed (script deleted) -->
                     <div class="bg-white p-4 rounded-lg">
-                        <strong class="block mb-2">🐧 WSL Ubuntu:</strong>
+                        <strong class="block mb-3">🐧 WSL Ubuntu:</strong>
                         <div class="relative">
-                            <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code>
-                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                            <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong class="block mb-2">🤖 Development Tools:</strong>
+                        <strong class="block mb-3">🤖 Development Tools:</strong>
                         <div class="relative">
-                            <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code>
-                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                            <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong class="block mb-2">🐍 Python Tools:</strong>
+                        <strong class="block mb-3">🐍 Python Tools:</strong>
                         <div class="relative">
-                            <code class="text-green-600">choco install -y python</code>
-                            <button class="copy-button absolute top-0 right-0">Copy</button>
+                            <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>choco install -y python</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                         </div>
                     </div>
                 </div>
@@ -416,41 +419,37 @@ cd windows-setup
                 <div class="bg-blue-50 p-8 rounded-xl border border-blue-200">
                     <h3 class="text-2xl font-bold text-blue-800 mb-6">🔄 Update Installation</h3>
                     <p class="text-gray-700 mb-4">Keep your development environment up-to-date:</p>
-                    <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm mb-4 relative">
-                        <pre class="whitespace-pre-line"><code># Update from repository
+                    <div class="relative mb-4">
+                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto whitespace-pre-line" style="position: relative;"><code># Update from repository
 git -C "C:\path\to\windows-setup" pull
 cd "C:\path\to\windows-setup"
 .\setup.ps1
 
 # Or run the remote script again
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code></pre>
-                        <button class="copy-button absolute top-2 right-2">Copy</button>
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
                 </div>
 
                 <!-- Troubleshooting -->
                 <div class="bg-red-50 p-8 rounded-xl border border-red-200">
                     <h3 class="text-2xl font-bold text-red-800 mb-6">🔧 Troubleshooting</h3>
-                    <div class="space-y-4">
+                    <div class="space-y-6">
                         <div>
-                            <strong>Refresh Environment Variables:</strong>
-                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1 relative">
-                                <code>refreshenv</code>
-                                <button class="copy-button absolute top-1 right-1">Copy</button>
+                            <strong class="block mb-3">Refresh Environment Variables:</strong>
+                            <div class="relative">
+                                <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>refreshenv</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                             </div>
                         </div>
                         <div>
-                            <strong>Check Chocolatey Installation:</strong>
-                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1 relative">
-                                <code>choco --version</code>
-                                <button class="copy-button absolute top-1 right-1">Copy</button>
+                            <strong class="block mb-3">Check Chocolatey Installation:</strong>
+                            <div class="relative">
+                                <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>choco --version</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                             </div>
                         </div>
                         <div>
-                            <strong>Verify Script Execution Policy:</strong>
-                            <div class="bg-gray-900 text-red-400 p-2 rounded font-mono mt-1 relative">
-                                <code>Get-ExecutionPolicy</code>
-                                <button class="copy-button absolute top-1 right-1">Copy</button>
+                            <strong class="block mb-3">Verify Script Execution Policy:</strong>
+                            <div class="relative">
+                                <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>Get-ExecutionPolicy</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                             </div>
                         </div>
                     </div>
@@ -464,9 +463,8 @@ iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/set
                     <strong>Always review scripts before running with elevated privileges.</strong>
                     You can inspect any script by opening its URL in your browser before execution.
                 </p>
-                <div class="bg-gray-900 text-yellow-400 p-3 rounded font-mono text-sm relative">
-                    <code>https://github.com/anshulyadav32/windows-setup</code>
-                    <button class="copy-button absolute top-2 right-2">Copy</button>
+                <div class="relative">
+                    <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>https://github.com/anshulyadav32/windows-setup</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                 </div>
                 <p class="text-gray-600 mt-3">All scripts are open source and available for review on our GitHub repository.</p>
             </div>
