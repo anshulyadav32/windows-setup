@@ -139,40 +139,53 @@
             <h3 class="text-xl font-semibold mt-8 mb-2">Direct Installation Options</h3>
             <p class="mb-4">If you prefer to install specific components directly:</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between h-full">
+            <div class="flex flex-col gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow-md">
                     <h4 class="font-semibold mb-2">Windows Tools Only</h4>
-                    <div class="relative my-2 flex-1">
-                        <pre class="bg-gray-100 rounded p-4 overflow-x-auto mb-2" style="position: relative;">
+                    <div class="flex flex-col md:flex-row gap-4 items-start">
+                        <div class="relative flex-grow">
+                            <pre class="bg-gray-100 rounded p-4 overflow-x-auto" style="position: relative;">
 <code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex</code>
 <button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button>
-                        </pre>
+                            </pre>
+                        </div>
+                        <div class="md:w-1/3">
+                            <p class="text-gray-600">Installs essential Windows development tools and utilities.</p>
+                        </div>
                     </div>
-                    <p class="text-sm text-gray-600">Installs essential Windows development tools and utilities.</p>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between h-full">
+                <div class="bg-white p-4 rounded-lg shadow-md">
                     <h4 class="font-semibold mb-2">WSL2 Ubuntu Setup</h4>
-                    <div class="relative my-2 flex-1">
-                        <pre class="bg-gray-100 rounded p-4 overflow-x-auto mb-2" style="position: relative;">
+                    <div class="flex flex-col md:flex-row gap-4 items-start">
+                        <div class="relative flex-grow">
+                            <pre class="bg-gray-100 rounded p-4 overflow-x-auto" style="position: relative;">
 <code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code>
 <button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button>
-                        </pre>
+                            </pre>
+                        </div>
+                        <div class="md:w-1/3">
+                            <p class="text-gray-600">Sets up WSL2 with Ubuntu and configures it for development.</p>
+                        </div>
                     </div>
-                    <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded mt-2">
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-3 rounded mt-3">
                         <p class="text-sm"><strong>⚠️ Important:</strong> WSL installation <b>requires a system restart</b>. Run the script once, restart your computer when prompted, then run it again to complete the installation.</p>
                     </div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between h-full">
+                <div class="bg-white p-4 rounded-lg shadow-md">
                     <h4 class="font-semibold mb-2">Additional Dev Tools</h4>
-                    <div class="relative my-2 flex-1">
-                        <pre class="bg-gray-100 rounded p-4 overflow-x-auto mb-2" style="position: relative;">
+                    <div class="flex flex-col md:flex-row gap-4 items-start">
+                        <div class="relative flex-grow">
+                            <pre class="bg-gray-100 rounded p-4 overflow-x-auto" style="position: relative;">
 <code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code>
 <button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button>
-                        </pre>
+                            </pre>
+                        </div>
+                        <div class="md:w-1/3">
+                            <p class="text-gray-600">Installs AI development tools, CLI utilities, and extra packages.</p>
+                        </div>
                     </div>
-                    <p class="text-sm text-gray-600">Installs AI development tools, CLI utilities, and extra packages.</p>
                 </div>
             </div>
             <blockquote class="border-l-4 border-blue-600 pl-4 text-gray-700 mt-4">
