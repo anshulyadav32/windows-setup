@@ -31,8 +31,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Run HTML validation
-        uses: Cyb3r-Jak3/html5validator-action@v2.0.0
+      - name: Validate HTML
+        uses: cyb3r-jak3/html5validator-action@v1.8.0
         with:
           root: ./website
       
