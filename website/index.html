@@ -125,7 +125,8 @@
             <h2 class="text-3xl font-bold mb-4">Quick Start</h2>
             <ol class="list-decimal ml-6 mb-6">
                 <li>Open PowerShell (no need for admin privileges - script will auto-elevate)</li>
-                <li>Run this command to automatically install all components:<br>
+                <li>
+                    <p class="mb-2">Run this command to automatically install all components:</p>
                     <div class="relative my-2">
                         <pre class="bg-gray-100 rounded p-2 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
@@ -358,9 +359,9 @@
                     <h3 class="text-2xl font-bold text-blue-800 mb-6">📦 Local Installation</h3>
                     <p class="text-gray-700 mb-6">Clone and install locally for full control:</p>
                     <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm relative">
-                        <code>git clone https://github.com/anshulyadav32/windows-setup.git<br>
-cd windows-setup<br>
-.\setup.ps1</code>
+                        <pre class="whitespace-pre-line"><code>git clone https://github.com/anshulyadav32/windows-setup.git
+cd windows-setup
+.\setup.ps1</code></pre>
                         <button class="copy-button absolute top-2 right-2">Copy</button>
                     </div>
                     <div class="mt-4 text-sm text-gray-600">
@@ -380,21 +381,21 @@ cd windows-setup<br>
                 <div class="flex flex-col md:flex-row gap-4 text-sm">
                     <!-- Windows Dev Tools: installps.ps1 reference removed (script deleted) -->
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>🐧 WSL Ubuntu:</strong><br>
+                        <strong class="block mb-2">🐧 WSL Ubuntu:</strong>
                         <div class="relative">
                             <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code>
                             <button class="copy-button absolute top-0 right-0">Copy</button>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>🤖 Development Tools:</strong><br>
+                        <strong class="block mb-2">🤖 Development Tools:</strong>
                         <div class="relative">
                             <code class="text-green-600">iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code>
                             <button class="copy-button absolute top-0 right-0">Copy</button>
                         </div>
                     </div>
                     <div class="bg-white p-4 rounded-lg">
-                        <strong>🐍 Python Tools:</strong><br>
+                        <strong class="block mb-2">🐍 Python Tools:</strong>
                         <div class="relative">
                             <code class="text-green-600">choco install -y python</code>
                             <button class="copy-button absolute top-0 right-0">Copy</button>
@@ -416,12 +417,13 @@ cd windows-setup<br>
                     <h3 class="text-2xl font-bold text-blue-800 mb-6">🔄 Update Installation</h3>
                     <p class="text-gray-700 mb-4">Keep your development environment up-to-date:</p>
                     <div class="bg-gray-900 text-blue-400 p-4 rounded-lg font-mono text-sm mb-4 relative">
-                        <code># Update from repository<br>
-git -C "C:\path\to\windows-setup" pull<br>
-cd "C:\path\to\windows-setup"<br>
-.\setup.ps1<br><br>
-# Or run the remote script again<br>
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code>
+                        <pre class="whitespace-pre-line"><code># Update from repository
+git -C "C:\path\to\windows-setup" pull
+cd "C:\path\to\windows-setup"
+.\setup.ps1
+
+# Or run the remote script again
+iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex</code></pre>
                         <button class="copy-button absolute top-2 right-2">Copy</button>
                     </div>
                 </div>
