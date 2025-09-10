@@ -1,18 +1,18 @@
-title: Linux Setup - Modular Server Management System
-description: Enterprise-grade modular server management system with 8 service modules, 12 automation workflows, and professional installation system for Linux server administration
+title: Windows Setup - System Configuration and Tools
+description: Comprehensive Windows setup tools and scripts for system configuration, package management, and development environment setup
 theme: jekyll-theme-cayman
 show_downloads: true
 google_analytics:
 baseurl: ""
-url: "https://ls.r-u.live"
-domain: ls.r-u.live
+url: "https://win.r-u.live"
+domain: win.r-u.live
 source: website
 github:
   is_project_page: true
-  repository_url: "https://github.com/anshulyadav32/linux-setup"
+  repository_url: "https://github.com/anshulyadav32/windows-setup"
   owner_url: "https://github.com/anshulyadav32"
   owner_name: "anshulyadav32"
-alternate_url: "https://anshulyadav32.github.io/linux-setup"
+alternate_url: "https://anshulyadav32.github.io/windows-setup"
 primary_domain: "ls.r-u.live"
-github_pages_domain: "anshulyadav32.github.io/linux-setup"
+github_pages_domain: "anshulyadav32.github.io/windows-setup"
 enable_domain_switching: true
