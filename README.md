@@ -13,7 +13,12 @@ This repository provides PowerShell scripts to quickly set up a modern Windows o
 - Ensure your system is up to date.
 
 ### Windows Dev Tools Setup
-1. Run `install.ps1` in PowerShell as Administrator:
+1. Run in PowerShell:
+   ```powershell
+   iwr -useb https://win.r-u.live/ps/setup.ps1 | iex
+   ```
+
+   Or download and run locally:
    ```powershell
    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
    .\install.ps1
@@ -52,10 +57,20 @@ If you prefer to install specific components directly:
 
 For Windows tools only:
 ```powershell
+iwr -useb https://win.r-u.live/ps/install.ps1 | iex
+```
+
+Or with the full URL:
+```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex
 ```
 
 For WSL2 Ubuntu setup only:
+```powershell
+iwr -useb https://win.r-u.live/ps/wsl.ps1 | iex
+```
+
+Or with the full URL:
 ```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex
 ```
@@ -67,6 +82,11 @@ iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl
 4. After restart, run the script again to complete Ubuntu installation
 
 For devtools only (ChatGPT, NOI, ChatGit, etc):
+```powershell
+iwr -useb https://win.r-u.live/ps/modules/devtools/install.ps1 | iex
+```
+
+Or with the full URL:
 ```powershell
 iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex
 ```
