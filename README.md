@@ -6,38 +6,46 @@
 
 This repository provides PowerShell scripts to quickly set up a modern Windows or WSL development environment.
 
+## Quick Start
+
+### Prerequisites
+- Run all scripts in **PowerShell as Administrator** for best results.
+- Ensure your system is up to date.
+
+### Windows Dev Tools Setup
+1. Run `install.ps1` in PowerShell as Administrator:
+   ```powershell
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+   .\install.ps1
+   ```
+2. The script will install Scoop, WinGet, and other tools as needed.
+
+### WSL Setup
+1. Run `wsl.ps1` to install and configure WSL2 and Ubuntu.
+2. Follow the prompts in the Ubuntu window to complete setup.
+3. Re-run `wsl.ps1` if instructed for additional configuration.
+
+### Additional Modules
+- See the `modules/devtools/install.ps1` for extra dev tool installations.
+
 ## Features
 - Windows: Installs Scoop, WinGet, Chocolatey, PowerToys, GitHub CLI (`gh`), Git, Visual Studio Code, Google Chrome, Node.js (LTS), Python, PostgreSQL (`psql`), Windows Terminal, Gemini CLI, ChatGPT CLI, Codex CLI
 - WSL2 Ubuntu: Installs Node.js LTS, PostgreSQL, Git, GitHub CLI, Python, React, Docker, DevOps tools, ChatGPT CLI
 
 ## Usage
 
-### Quick Setup (Automatic Installation)
-Open PowerShell as Administrator and run:
-```powershell
-iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex
-```
+## Troubleshooting
+- If you encounter admin or permission issues, ensure PowerShell is running as Administrator.
+- For Scoop issues, check [Scoop documentation](https://scoop.sh/).
 
-Or full command:
-```powershell
-Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | Invoke-Expression
-```
+## Repository Structure
+- `install.ps1` - Main Windows setup script
+- `wsl.ps1` - WSL and Ubuntu setup script
+- `modules/devtools/install.ps1` - Additional dev tools
+- `website/` - Documentation and web assets
 
-This will automatically install all components:
-- Windows Developer Tools (VS Code, Git, Node.js, Python, Docker, etc.)
-- WSL2 with Ubuntu + Developer Tools 
-- Additional Dev Tools (ChatGPT, NOI CLI, ChatGit, etc.)
-
-### WSL Installation Note
-
-⚠️ **Important**: Installing WSL requires a system restart. The script will:
-1. Install the WSL component
-2. Prompt you to restart your computer
-3. After restart, you'll need to run the script again to complete the installation
-
-See the [WSL Installation Guide](docs/wsl-guide.md) for detailed instructions or troubleshooting.
-
-Note: The script will automatically request administrator privileges if needed.
+## License
+MIT
 
 ### Option 2: Individual Components
 If you prefer to install specific components directly:
