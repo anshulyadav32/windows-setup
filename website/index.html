@@ -340,10 +340,9 @@
                     <div class="bg-white p-4 rounded shadow-inner">
                         <span class="font-semibold text-blue-800">Features:</span>
                         <ul class="list-disc ml-5 mt-2 space-y-1 text-gray-700">
-                            <li>Ubuntu setup with essential tools</li>
-                            <li>Chocolatey & Scoop integration</li>
-                            <li>Dev tools pre-installed</li>
-                            <li>Seamless Windows integration</li>
+                            <li>Ubuntu setup</li>
+                            <li>Dev tools</li>
+                            <li>Windows integration</li>
                         </ul>
                     </div>
                 </div>
@@ -433,6 +432,19 @@ cd windows-setup
                     <h3 class="text-2xl font-bold text-gray-800">Individual Module Installation</h3>
                 </div>
                 <p class="text-gray-700 mb-8 text-center max-w-3xl mx-auto">Install specific components directly based on your needs:</p>
+                
+                <!-- Command to install individual tools -->
+                <div class="bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border border-green-200 shadow-md mb-10 max-w-3xl mx-auto">
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl mr-2">⚙️</span>
+                        <h4 class="text-lg font-bold">Install Individual Tools</h4>
+                    </div>
+                    <p class="text-gray-600 mb-4">Use this command to install specific tools (replace TOOL_NAME with the tool you want)</p>
+                    <div class="relative">
+                        <pre class="bg-white rounded-lg p-3 overflow-x-auto border border-green-100 shadow-inner" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/install.ps1 | iex -Tool TOOL_NAME</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Windows Dev Tools: installps.ps1 reference removed (script deleted) -->
                     <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md border border-blue-100 hover:shadow-lg transition-all">
