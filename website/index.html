@@ -351,73 +351,117 @@
     </section>
 
     <!-- Installation Instructions -->
-    <section id="installation" class="py-20 bg-gray-50">
+    <section id="installation" class="py-20 bg-gradient-to-b from-white to-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl font-bold text-center mb-12">Advanced Installation Options</h2>
             
-            <div class="flex flex-col md:flex-row gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <!-- Non-Interactive Install -->
-                <div class="bg-green-50 p-8 rounded-xl border border-green-200">
-                    <h3 class="text-2xl font-bold text-green-800 mb-6">⚡ Non-Interactive Install</h3>
-                    <p class="text-gray-700 mb-6">Install everything automatically without prompts:</p>
-                    <div class="relative">
-                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                <div class="bg-gradient-to-br from-green-50 to-white p-8 rounded-xl border border-green-200 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-6">
+                        <span class="text-3xl mr-3">⚡</span>
+                        <h3 class="text-2xl font-bold text-green-800">Non-Interactive Install</h3>
                     </div>
-                    <div class="mt-4 text-sm text-gray-600">
-                        <ul class="space-y-1">
-                            <li>✅ Fastest installation method</li>
-                            <li>✅ Always uses latest version</li>
-                            <li>✅ Automatic dependency handling</li>
-                            <li>✅ No user interaction required</li>
+                    <p class="text-gray-700 mb-6">Install everything automatically without prompts:</p>
+                    <div class="relative mb-6">
+                        <pre class="bg-white rounded-lg p-4 overflow-x-auto border border-green-100 shadow-inner" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/setup.ps1 | iex -InstallAll</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border border-green-100">
+                        <h4 class="font-semibold text-green-800 mb-3">Key Benefits:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span>Fastest installation method</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span>Always uses latest version</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span>Automatic dependency handling</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✅</span>
+                                <span>No user interaction required</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Local Installation -->
-                <div class="bg-blue-50 p-8 rounded-xl border border-blue-200">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-6">📦 Local Installation</h3>
+                <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border border-blue-200 shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-6">
+                        <span class="text-3xl mr-3">📦</span>
+                        <h3 class="text-2xl font-bold text-blue-800">Local Installation</h3>
+                    </div>
                     <p class="text-gray-700 mb-6">Clone and install locally for full control:</p>
-                    <div class="relative">
-                        <pre class="bg-gray-100 rounded p-3 overflow-x-auto whitespace-pre-line" style="position: relative;"><code>git clone https://github.com/anshulyadav32/windows-setup.git
+                    <div class="relative mb-6">
+                        <pre class="bg-white rounded-lg p-4 overflow-x-auto border border-blue-100 shadow-inner whitespace-pre-line" style="position: relative;"><code>git clone https://github.com/anshulyadav32/windows-setup.git
 cd windows-setup
 .\setup.ps1</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                     </div>
-                    <div class="mt-4 text-sm text-gray-600">
-                        <ul class="space-y-1">
-                            <li>✅ Full control over installation</li>
-                            <li>✅ Customize components</li>
-                            <li>✅ Modify scripts as needed</li>
-                            <li>✅ Works offline after cloning</li>
+                    <div class="bg-white p-4 rounded-lg border border-blue-100">
+                        <h4 class="font-semibold text-blue-800 mb-3">Key Benefits:</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✅</span>
+                                <span>Full control over installation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✅</span>
+                                <span>Customize components</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✅</span>
+                                <span>Modify scripts as needed</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">✅</span>
+                                <span>Works offline after cloning</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <!-- Individual Module Installation -->
-            <div class="mt-12 bg-blue-50 p-8 rounded-xl border border-blue-200">
-                <h3 class="text-2xl font-bold text-blue-800 mb-6">🔧 Individual Module Installation</h3>
-                <p class="text-gray-700 mb-6">Install specific components directly:</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="mt-16">
+                <div class="flex items-center justify-center mb-8">
+                    <span class="text-3xl mr-3">🔧</span>
+                    <h3 class="text-2xl font-bold text-gray-800">Individual Module Installation</h3>
+                </div>
+                <p class="text-gray-700 mb-8 text-center max-w-3xl mx-auto">Install specific components directly based on your needs:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Windows Dev Tools: installps.ps1 reference removed (script deleted) -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h4 class="text-lg font-bold mb-3">🐧 WSL Ubuntu</h4>
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md border border-blue-100 hover:shadow-lg transition-all">
+                        <div class="flex items-center mb-4">
+                            <span class="text-2xl mr-2">🐧</span>
+                            <h4 class="text-lg font-bold">WSL Ubuntu</h4>
+                        </div>
                         <p class="text-gray-600 mb-4">Sets up WSL2 with Ubuntu for Linux development</p>
                         <div class="relative">
-                            <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                            <pre class="bg-white rounded-lg p-3 overflow-x-auto border border-blue-100 shadow-inner" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h4 class="text-lg font-bold mb-3">🤖 Development Tools</h4>
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md border border-blue-100 hover:shadow-lg transition-all">
+                        <div class="flex items-center mb-4">
+                            <span class="text-2xl mr-2">🤖</span>
+                            <h4 class="text-lg font-bold">Development Tools</h4>
+                        </div>
                         <p class="text-gray-600 mb-4">Installs GitHub, Notion and other CLI tools</p>
                         <div class="relative">
-                            <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                            <pre class="bg-white rounded-lg p-3 overflow-x-auto border border-blue-100 shadow-inner" style="position: relative;"><code>iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/modules/devtools/install.ps1 | iex</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <h4 class="text-lg font-bold mb-3">🐍 Python Tools</h4>
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl shadow-md border border-blue-100 hover:shadow-lg transition-all">
+                        <div class="flex items-center mb-4">
+                            <span class="text-2xl mr-2">🐍</span>
+                            <h4 class="text-lg font-bold">Python Tools</h4>
+                        </div>
                         <p class="text-gray-600 mb-4">Installs Python and common data science packages</p>
                         <div class="relative">
-                            <pre class="bg-gray-100 rounded p-3 overflow-x-auto" style="position: relative;"><code>choco install -y python</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
+                            <pre class="bg-white rounded-lg p-3 overflow-x-auto border border-blue-100 shadow-inner" style="position: relative;"><code>choco install -y python</code><button class="copy-button" style="position: absolute; right: 10px; top: 10px;">Copy</button></pre>
                         </div>
                     </div>
                 </div>
