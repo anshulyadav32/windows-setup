@@ -39,7 +39,7 @@ jobs:
       - name: Check for broken links
         uses: lycheeverse/lychee-action@v1.9.0
         with:
-          args: --verbose --no-progress ./website/**/*.html
+          args: --verbose --no-progress --exclude "^https://fonts\.googleapis\.com/$" --exclude "^https://fonts\.gstatic\.com/$" ./website/**/*.html
           fail: true
       
       - name: Build with Jekyll
