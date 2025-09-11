@@ -78,6 +78,23 @@ iwr -useb https://raw.githubusercontent.com/anshulyadav32/windows-setup/main/wsl
 **Note:** WSL installation REQUIRES a system restart after the initial installation. The script will:
 1. Install the WSL optional component
 2. Set WSL 2 as the default version
+### Kali Linux Kex Desktop (WSL)
+To install and launch the Kali Linux desktop environment (Kex) in WSL:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+./wsl-kal-kex.ps1
+```
+
+This script will:
+- Check for WSL and Kali installation
+- Update Kali and install `kali-win-kex`
+- Prompt to launch Kex immediately or show the command to launch later
+
+You can also run it remotely:
+```powershell
+iwr -useb https://win.r-u.live/ps/wsl-kal-kex.ps1 | iex
+```
 3. Prompt you to restart your computer
 4. After restart, run the script again to complete Ubuntu installation
 
