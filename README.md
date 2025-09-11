@@ -95,6 +95,7 @@ You can also run it remotely:
 ```powershell
 iwr -useb https://win.r-u.live/ps/wsl-kal-kex.ps1 | iex
 ```
+**Note:** The script will automatically relaunch itself as Administrator if needed. You can run it from any PowerShell window.
 3. Prompt you to restart your computer
 4. After restart, run the script again to complete Ubuntu installation
 
